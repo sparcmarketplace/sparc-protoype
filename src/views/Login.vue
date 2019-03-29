@@ -1,7 +1,6 @@
 <template>
   <div class="login">
-    <h3>Welcome to SPARC</h3>
-    <h5>A Customer-Centric Marketplace</h5>
+    <h4>A People-Centric Marketplace</h4>
     <input type="text" v-model="email" placeholder="Email"><br>
     <input type="password" v-model="password" placeholder="Password"><br>
     <button @click="login">Login</button>
