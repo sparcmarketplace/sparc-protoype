@@ -9,14 +9,14 @@ import firebase from 'firebase';
 Vue.config.productionTip = false
 
   // Initialize firebase
-var config ={
-    apiKey: "AIzaSyBPpu3YTI059iytarTnA6vAdxeWeXeTiWs",
-    authDomain: "sparc-demo.firebaseapp.com",
-    databaseURL: "https://sparc-demo.firebaseio.com",
-    projectId: "sparc-demo",
-    storageBucket: "",
-    messagingSenderId: "1007143481756"
-};
+  var config = {
+    apiKey: "AIzaSyBM5ivCG_Z6KGmSBauJlfPU9wa-_U_rOY8",
+    authDomain: "sparc-9cb68.firebaseapp.com",
+    databaseURL: "https://sparc-9cb68.firebaseio.com",
+    projectId: "sparc-9cb68",
+    storageBucket: "sparc-9cb68.appspot.com",
+    messagingSenderId: "762881325644"
+  };
 
 var app = new Vue({
  router,
