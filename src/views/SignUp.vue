@@ -7,22 +7,23 @@
     <input type="text" v-model="email" placeholder="coffee@duke.edu"><br>
       <p>Enter the password you want to use!</p>
     <input type="password" v-model="password" placeholder="javabeans123"><br>
+    <input type="text" v-model="title" placeholder="CS Student at Duke Unversity"><br>
     <p>Please write up a short biography about yourself and your interests! (approx 100 - 200 words)</p>
     <textarea rows="4" cols="50" placeholder = "Raised in a small town in Ireland, I...."></textarea><br>
     <p>Graduation Year</p>
     <select class="grad" name="gradyear">
-      <option value="senior">2019</option>
-      <option value="junior">2020</option>
-      <option value="soph">2021</option>
-      <option value="fresh">2022</option>
-      <option value="pfrosh">2023</option>
+      <option value="2019">2019</option>
+      <option value="2020">2020</option>
+      <option value="2021">2021</option>
+      <option value="2022">2022</option>
+      <option value="2023">2023</option>
     </select>
   </div>
     <div class = "right">
       <p>Full Name:</p>
-      <input type="text" v-model="fname" placeholder="Kyle Ryan"><br>
+      <input type="text" v-model="name" placeholder="Kyle Ryan"><br>
       <p>Age:</p>
-      <input type="text" v-model="age" placeholder="20"><br>
+      <input type="number" v-model="age" placeholder="20"><br>
   <form> <p>Would you like to be a host or an engagee?</p>
     <input type="radio" v-model="chooseone" value="Host"><label for="Host">Host</label><br>
     <input type="radio" v-model="chooseone" value="Engagee"><label for="Engagee">Engagee</label><br>
@@ -33,7 +34,7 @@
 <p> Location</p>
 <input type="text" v-model="location" placeholder="New York City"><br>
 <p> Title</p>
-<input type="text" v-model="title" placeholder="Senior Analyst"><br>
+<input type="text" v-model="jtitle" placeholder="Senior Analyst"><br>
 
   </div>
 
@@ -43,17 +44,31 @@
 </template>
 
  <script>
+
+
   import firebase from 'firebase';
+
+  firebase.initializeApp({
+    apiKey:  "AIzaSyBM5ivCG_Z6KGmSBauJlfPU9wa-_U_rOY8",
+    authDomain: "sparc-9cb68.firebaseapp.com",
+    projectId: '"sparc-9cb68"'
+  });
+
   export default {
     name: 'signUp',
     data() {
       return {
         email: '',
         password: '',
-        fname: '',
-         lname: '',
-         typeentrant: '',
-         chooseone: ''
+        age: '',
+        bio: '',
+        gradYear:'',
+        host:'',
+        name:'',
+        title: '',
+        location:'',
+        company:'',
+        jTitle:'',
       }
     },
     methods: {
@@ -67,11 +82,20 @@
             alert('Oops. ' + err.message)
           }
         );
+
         switch(this.chooseone){
           case "Host":
+            this.host = true;
+
+            createUser(this.age, this.bio, this.gradyear, this.host, this.name, this.title, this.location, this.company, this.jTitle);
+
             this.$router.replace('host');
             break;
           case "Engagee":
+            this.host = false;
+
+            createUser(this.age, this.bio, this.gradyear, this.host, this.name, this.title, this.location, this.company, this.jTitle);
+
             this.$router.replace('home');
             break;
           default:
@@ -79,8 +103,38 @@
         }
        }
       }
-    
-  }
+
+
+
+function createUser(age, bio, gradYear, host, name, title, location, company, jTitle){
+  const db = firebase.firestore();
+  const usersRef = db.collection('Users');
+
+  usersRef.add({
+    age: age,
+    bio: bio,
+    gradYear: gradYear,
+    host: host,
+    name: name,
+    title: title,
+    uid: firebase.auth().currentUser.uid,
+    location: location,
+    company: company,
+    jTitle: jTitle,
+  });
+
+  .then(function() {
+    console.log("Document successfully written!");
+})
+.catch(function(error) {
+    console.error("Error writing document: ", error);
+});
+
+}
+
+
+
+
 </script>
 
  <style scoped>
