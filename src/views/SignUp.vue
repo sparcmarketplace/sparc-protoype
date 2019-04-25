@@ -20,7 +20,7 @@
   </div>
     <div class = "right">
       <p>Full Name:</p>
-      <input type="text" v-model="fname" placeholder="Kyle Ryan"><br>
+      <input type="text" v-model="name" placeholder="Kyle Ryan"><br>
       <p>Age:</p>
       <input type="text" v-model="age" placeholder="20"><br>
   <form> <p>Would you like to be a host or an engagee?</p>
@@ -79,7 +79,7 @@
         }
        }
       }
-    
+
   }
 </script>
 
