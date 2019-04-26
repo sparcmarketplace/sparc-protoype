@@ -15,8 +15,8 @@
   import db from '@/firebase/init'
   import firebase from 'firebase'
 
-  const temp = firebase.auth().currentUser.uid;
-  const currentUser = db.collections('Users').where("uid", "==", "temp").get();
+  //const temp = firebase.auth().currentUser.uid;
+  //const currentUser = db.collections('Users').where("uid", "==", "temp").get();
 
   // @ is an alias to /src
   export default {

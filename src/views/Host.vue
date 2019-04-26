@@ -47,7 +47,7 @@ export default {
       db.collection('Engagements').add({
         description: this.description,
         title: this.title,
-        date: moment.utc(this.date).local().format(),
+        date: this.date, //oment.utc(this.date).local().format(),
         location: this.location,
         hid: firebase.auth().currentUser.uid,
         participants: [],
@@ -55,6 +55,7 @@ export default {
 
       });
       alert('Engagement Created!')
+
       this.$router.replace('HostDashboard')
       //need to reroute to host dashboard
     }
