@@ -4,7 +4,8 @@
     <p>Title:</p>
     <input type="text" v-model="title" placeholder="Consulting for Undergraduates"><br>
     <p>Date and Time:</p>
-    <input type="datetime-local" name="date"><br>
+    <input type="date" name="date"><br>
+    <input type="time" name="time"><br>
     <p>Location:</p>
     <input type="text" v-model="location" placeholder="Bryan Center 111"><br>
     <p>Please give a brief description of the event</p>
@@ -47,7 +48,7 @@ export default {
       db.collection('Engagements').add({
         description: this.description,
         title: this.title,
-        date: this.date.toString(), //oment.utc(this.date).local().format(),
+        date: str.concat(this.date.toString(), this.time.toString), //oment.utc(this.date).local().format(),
         location: this.location,
         hid: firebase.auth().currentUser.uid,
         participants: [],
