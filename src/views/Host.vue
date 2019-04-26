@@ -4,8 +4,7 @@
     <p>Title:</p>
     <input type="text" v-model="title" placeholder="Consulting for Undergraduates"><br>
     <p>Date and Time:</p>
-    <input type="time" v-model="time" placeholder="6:30 PM"><br>
-    <input type="date" name="date"><br>
+    <input type="datetime-local" name="date"><br>
     <p>Location:</p>
     <input type="text" v-model="location" placeholder="Bryan Center 111"><br>
     <p>Please give a brief description of the event</p>
@@ -32,7 +31,6 @@ export default {
   data() {
     return {
       title: '',
-      time:'',
       date: '',
       description: '',
       location:'',
@@ -49,7 +47,6 @@ export default {
       db.collection('Engagements').add({
         description: this.description,
         title: this.title,
-        time: this.time,
         date: this.date,
         location: this.location,
         hid: firebase.auth().currentUser.uid,
@@ -58,7 +55,7 @@ export default {
 
       });
       alert('Engagement Created!')
-      this.$router.replace('host')
+      this.$router.replace('HostDashboard')
       //need to reroute to host dashboard
     }
   }

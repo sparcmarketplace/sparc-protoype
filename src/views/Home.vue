@@ -4,16 +4,15 @@
     <h2>Upcoming Engagments:</h2>
     <div class="engage" v-for="engage in Engagements" :key="engage.title">
       <h2>{{ engage.title }}</h2>
-      <h3>{{ engage.date, engage.location}}</h3>
+      <h3>{{ engage.time }} , {{ engage.date }} , {{ engage.location }}</h3>
       <h3>{{ engage.description }}</h3>
       <h3>{{ engage.tags }}</h3>
-
-      <button @click="rsvp">Sign Up</button> <br>
-      <button @click="cancel">Cancel</button> <br>
-
-    </div>
+                  <button @click="rsvp">Sign Up</button> <br>
+                  <button @click="cancel">Cancel</button> <br>
+          </div>
 
   </div>
+
 </template>
 
 <script>
@@ -41,8 +40,8 @@ export default {
         this.$router.replace('login')
       })
     },
-    rsvp: function(){
-
+    engagement: function(){
+      this.$router.replace('thanks')
     }
   },
   created(){
