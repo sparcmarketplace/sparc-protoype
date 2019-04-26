@@ -20,6 +20,8 @@
   </div>
 </template>
 
+<script src="https://www.gstatic.com/firebasejs/5.10.1/firebase-firestore.js"></script>
+<script src="https://www.gstatic.com/firebasejs/5.10.1/firebase.js"></script>
 <script>
 
 import db from '@/firebase/init'
