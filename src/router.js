@@ -7,6 +7,11 @@ import SignUp from './views/SignUp.vue';
 import SignUp2 from './views/SignUp2.vue';
 import Thanks from './views/Thanks.vue';
 import Host from './views/Host.vue';
+import userProfile from './views/UserProfile.vue';
+import hostProfile from '.views/HostProfile.vue';
+import hostDashboard from '.views/HostDashboard.vue';
+import userDashboard from '.views/UserDashboard.vue';
+
 
 
 
@@ -36,6 +41,26 @@ const router = new Router({
       path: '/thanks',
       name: 'Thanks',
       component: Thanks
+    },
+    {
+      path: '/hostProfile',
+      name: 'hostProfile',
+      component: HostProfile
+    },
+    {
+      path: '/userProfile',
+      name: 'userProfile',
+      component: UserProfile
+    },
+    {
+      path: '/userDashboard',
+      name: 'userDashboard',
+      component: UserDashboard
+    },
+    {
+      path: '/hostDashboard',
+      name: 'hostDashboard',
+      component: HostDashboard
     },
     {
       path: '/sign-up-2',

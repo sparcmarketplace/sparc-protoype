@@ -1,12 +1,12 @@
 <template>
   <div class="host-create">
 
-
+    <button @click="profile">User Profile</button> <br>
+    <button @click="logout">Logout</button>
 
     <button @click="rsvp">Sign Up</button> <br>
-    <button @click="dashboard">Sign Up</button> <br>
     <button @click="cancel">Cancel</button> <br>
-    <button @click="logout">Logout</button>
+
 
   </div>
 </template>
@@ -30,8 +30,18 @@
         })
       },
       rsvp: function(){
-        this.$router.replace('thanks')
-    }
+        alert('Signup successful!')
+        this.$router.replace('userDashboard')
+    },
+
+      cancel: function(){
+        alert('Event Cancelled!')
+
+      },
+      profile: function(){
+        this.$router.replace('userProfile')
+      }
+
   }
 }
 

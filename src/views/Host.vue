@@ -57,6 +57,7 @@ export default {
       });
       alert('Engagement Created!')
       this.$router.replace('host')
+      //need to reroute to host dashboard
     }
   }
 }

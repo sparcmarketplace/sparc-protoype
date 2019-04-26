@@ -2,10 +2,7 @@
   <div class="host-create">
 
 
-
-    <button @click="rsvp">Sign Up</button> <br>
-    <button @click="dashboard">Sign Up</button> <br>
-    <button @click="cancel">Cancel</button> <br>
+    <button @click="userDashboard">User Dashboard</button> <br>
     <button @click="logout">Logout</button>
 
   </div>
@@ -29,8 +26,8 @@
           this.$router.replace('login')
         })
       },
-      rsvp: function(){
-        this.$router.replace('thanks')
+      userDashboard: function(){
+        this.$router.replace('userDashboard')
     }
   }
 }
