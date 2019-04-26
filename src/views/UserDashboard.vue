@@ -17,6 +17,11 @@
       <button @click="cancel">Cancel</button> <br>
 
     </div>
+    <div class="done">
+      <button @click="logout">Logout</button>
+      <button @click="UserProfile">User Profile</button> <br>
+
+    </div>
 
   </div>
 </template>
@@ -35,7 +40,14 @@ export default {
     }
   },
   methods: {
-
+    // engagement: function(){
+    //   db.collections("Engagements").add({
+    //     participants.add(this.currentUser)
+    //   })
+    // },
+    UserProfile: function(){
+      this.$routher.replace('userProfile')
+    },
     logout: function() {
       firebase.auth().signOut().then(() => {
         alert('Logout successful!')
