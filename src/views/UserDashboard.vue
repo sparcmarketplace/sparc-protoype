@@ -30,11 +30,7 @@ export default {
     }
   },
   methods: {
-    // engagement: function(){
-    //   db.collections("Engagements").add({
-    //     participants.add(this.currentUser)
-    //   })
-    // },
+
     logout: function() {
       firebase.auth().signOut().then(() => {
         alert('Logout successful!')
@@ -42,8 +38,16 @@ export default {
       })
     },
     rsvp: function(){
-
+      db.collection('Engagements').where(engage.id, '==', doc.id).update({
+        participants: firebase.firestore.FieldValue.arrayUnion(firebase.auth().currentUser.uid)
+      });
+    },
+    cancel: function(){
+      db.collection('Engagements').where(engage.id, '==', doc.id).update({
+        participants: firebase.firestore.FieldValue.arrayRemove(firebase.auth().currentUser.uid)
+      });
     }
+
   },
   created(){
    db.collection('Engagements').get()
