@@ -5,7 +5,12 @@
     <div class="engage" v-for="engage in Engagements" :key="engage.title">
       <h2>{{ engage.title }}</h2>
       <h3>{{ engage.date, engage.location}}</h3>
+      <h3>{{engage.id}}</h3>
+
+      <p>Description:</p>
       <h3>{{ engage.description }}</h3>
+
+      <p>Tags:</p>
       <h3>{{ engage.tags }}</h3>
 
       <button @click="rsvp">Sign Up</button> <br>
