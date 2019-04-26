@@ -4,11 +4,19 @@
     <p>Title:</p>
     <input type="text" v-model="title" placeholder="Consulting for Undergraduates"><br>
     <p>Date and Time:</p>
-    <input type="text" v-model="date" placeholder="December 17th at 6:30 PM"><br>
+    <input type="time" v-model="time" placeholder="6:30 PM"><br>
+    <input type="date" name="date"><br>
+    <p>Location:</p>
+    <input type="text" v-model="location" placeholder="Bryan Center 111"><br>
     <p>Please give a brief description of the event</p>
-    <textarea rows="4" cols="50" v-model="info" placeholder = "We will discuss company culture at..."></textarea><br>
+    <textarea rows="4" cols="50" v-model="description" placeholder = "We will discuss company culture at..."></textarea><br>
+    <p>Tags: Space delimited</p>
+    <input type="text" v-model="tags" placeholder="consulting Bain New York"><br>
+
+
     <button @click="create">Create Engagement</button> <br>
     <button @click="logout">Logout</button>
+
   </div>
 </template>
 
@@ -22,8 +30,11 @@ export default {
   data() {
     return {
       title: '',
+      time:'',
       date: '',
-      info: ''
+      description: '',
+      location:'',
+      tags:'',
     }
   },
   methods: {
@@ -34,9 +45,15 @@ export default {
     create: function(){
 
       db.collection('Engagements').add({
-        description: this.info,
+        description: this.description,
         title: this.title,
-        time: this.date
+        time: this.time,
+        date: this.date,
+        location: this.location,
+        hid: firebase.auth().currentUser.uid,
+        participants: [],
+        tags: this.tags.split(" ")
+
       });
       alert('Engagement Created!')
       this.$router.replace('host')

@@ -84,7 +84,7 @@
         }
         firebase.auth().createUserWithEmailAndPassword(this.email, this.password).then(
           (user) => {
-            db.collection('Users').add({
+            db.collection('Users').doc(firebase.auth().currentUser.uid).set({
               age: this.age,
               bio: this.bio,
               gradYear: this.gradYear,
@@ -112,23 +112,6 @@
 
 
       },
-
-
-
-//  createUser: function(age, bio, gradYear, host, name, title, location, company, jTitle){
-//    alert('trying')
-//   const usersRef = db.collection('Users');
-//
-//
-//
-// //   .then(function() {
-// //     console.log("Document successfully written!");
-// // })
-// // .catch(function(error) {
-// //     console.error("Error writing document: ", error);
-// // });
-//
-// }
 }
 }
 
