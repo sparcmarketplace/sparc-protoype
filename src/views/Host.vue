@@ -6,21 +6,38 @@
     <p>Date and Time:</p>
     <input type="text" v-model="date" placeholder="December 17th at 6:30 PM"><br>
     <p>Please give a brief description of the event</p>
-    <textarea rows="4" cols="50" placeholder = "We will discuss company culture at..."></textarea><br>
+    <textarea rows="4" cols="50" v-model="info" placeholder = "We will discuss company culture at..."></textarea><br>
     <button @click="create">Create Engagement</button> <br>
     <button @click="logout">Logout</button>
   </div>
 </template>
 
 <script>
+
+import db from '@/firebase/init'
+import firebase from 'firebase'
+
 export default {
   name: 'host',
+  data() {
+    return {
+      title: '',
+      date: '',
+      info: ''
+    }
+  },
   methods: {
     logout: function() {
         alert('Logout successful!')
         this.$router.replace('login')
     },
     create: function(){
+
+      db.collection('Engagements').add({
+        description: this.info,
+        title: this.title,
+        time: this.date
+      });
       alert('Engagement Created!')
       this.$router.replace('host')
     }
