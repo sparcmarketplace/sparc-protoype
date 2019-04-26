@@ -1,4 +1,7 @@
 # sparc
+Jeffrey He - wrote functions that linked backend with frontend, set up firebase, helped create different views and materializing userflows. Outside of coding, created our userflows in Adobe XD, and helped set up in person engagements.
+Kyle Ryan - did a lot of work on the front end with vue, also helped with user auth functionality and querying backend. Outside of coding, helped with in person engagements and feature set ideation.
+
 
 ## Project setup
 ```
