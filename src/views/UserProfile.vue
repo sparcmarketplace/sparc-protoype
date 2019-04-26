@@ -18,7 +18,7 @@
     </div>
     <div class="done">
       <button @click="logout">Logout</button>
-      <button @click="UserProfile">User Profile</button> <br>
+      <button @click="UserDashboard">User Dashboard</button> <br>
 
     </div>
 
@@ -44,8 +44,8 @@ export default {
     //     participants.add(this.currentUser)
     //   })
     // },
-    UserProfile: function(){
-      this.$routher.replace('userProfile')
+    UserDashboard: function(){
+      this.$router.replace('home')
     },
     logout: function() {
       firebase.auth().signOut().then(() => {

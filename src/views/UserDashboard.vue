@@ -44,7 +44,7 @@ export default {
     //   })
     // },
     UserProfile: function(){
-      this.$routher.replace('userProfile')
+      this.$router.replace('userProfile')
     },
     logout: function() {
       firebase.auth().signOut().then(() => {

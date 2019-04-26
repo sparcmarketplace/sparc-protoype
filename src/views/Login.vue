@@ -10,6 +10,7 @@
 
 <script>
   import firebase from 'firebase';
+  import db from '@/firebase/init';
   export default {
     name: 'login',
     data() {
@@ -34,7 +35,7 @@
   }
 </script>
 
-<style scoped>  /* "scoped" attribute limit the CSS to this component only */
+<style scoped>
   .login {
     margin-top: 40px;
   }
