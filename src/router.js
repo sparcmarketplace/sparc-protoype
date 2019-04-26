@@ -7,10 +7,10 @@ import SignUp from './views/SignUp.vue';
 import SignUp2 from './views/SignUp2.vue';
 import Thanks from './views/Thanks.vue';
 import Host from './views/Host.vue';
-import userProfile from './views/UserProfile.vue';
-import hostProfile from '.views/HostProfile.vue';
-import hostDashboard from '.views/HostDashboard.vue';
-import userDashboard from '.views/UserDashboard.vue';
+import UserProfile from './views/UserProfile.vue';
+import HostProfile from './views/HostProfile.vue';
+import HostDashboard from './views/HostDashboard.vue';
+import UserDashboard from './views/UserDashboard.vue';
 
 
 

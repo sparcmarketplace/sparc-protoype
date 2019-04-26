@@ -1,5 +1,4 @@
 <template>
-  <div class="host-create">
   <div class="home">
     <h1>Welcome!</h1>
     <h2>Upcoming Engagments:</h2>
