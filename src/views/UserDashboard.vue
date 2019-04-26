@@ -29,9 +29,7 @@
 <script>
 import db from '@/firebase/init'
 import firebase from 'firebase'
-
 const currentUser = firebase.auth().currentUser;
-
 export default {
   name: 'home',
   data(){
@@ -64,7 +62,6 @@ export default {
         participants: firebase.firestore.FieldValue.arrayRemove(firebase.auth().currentUser.uid)
       });
     }
-
   },
   created(){
    db.collection('Engagements').get()
@@ -77,7 +74,6 @@ export default {
    })
 }
 }
-
 </script>
 <style scoped>
  .engage, .engage2{
@@ -100,7 +96,6 @@ export default {
    cursor: pointer;
  }
  button:hover{
-
    color: red;
  }
  span {
@@ -111,5 +106,4 @@ export default {
  h1{
    color: red;
  }
-
 </style>

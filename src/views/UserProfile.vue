@@ -1,83 +1,109 @@
 <template>
-  <div class="host-create">
+  <div class="home">
+    <h1>Welcome!</h1>
+    <h2>Your Upcoming Engagments:</h2>
+    <div class="engage" v-for="engage in Engagements" :key="engage.title">
+      <h2>{{ engage.title }}</h2>
+      <h3>{{ engage.date, engage.location }}</h3>
+      <h3>{{engage.id}}</h3>
 
+      <p>Description:</p>
+      <h3>{{ engage.description }}</h3>
 
-    <button @click="userDashboard">User Dashboard</button> <br>
-    <button @click="logout">Logout</button>
+      <p>Tags:</p>
+      <h3>{{ engage.tags }}</h3>
+
+      <button @click="cancel(engage.id)">Cancel</button> <br>
+
+    </div>
+    <div class="done">
+      <button @click="logout">Logout</button>
+      <button @click="UserProfile">User Profile</button> <br>
+
+    </div>
 
   </div>
 </template>
 
+<script>
+import db from '@/firebase/init'
+import firebase from 'firebase'
 
-<script src="https://www.gstatic.com/firebasejs/5.10.1/firebase-firestore.js"></script>
-<script src="https://www.gstatic.com/firebasejs/5.10.1/firebase.js"></script>
- <script>
-  import db from '@/firebase/init'
-  import firebase from 'firebase'
+const currentUser = firebase.auth().currentUser;
 
-
-  // @ is an alias to /src
-  export default {
-    name: 'home',
-    methods: {
-      logout: function() {
-        firebase.auth().signOut().then(() => {
-          alert('Logout successful!')
-          this.$router.replace('login')
-        })
-      },
-      userDashboard: function(){
-        this.$router.replace('userDashboard')
+export default {
+  name: 'home',
+  data(){
+    return{
+      Engagements: []
     }
-  }
+  },
+  methods: {
+    // engagement: function(){
+    //   db.collections("Engagements").add({
+    //     participants.add(this.currentUser)
+    //   })
+    // },
+    UserProfile: function(){
+      this.$routher.replace('userProfile')
+    },
+    logout: function() {
+      firebase.auth().signOut().then(() => {
+        alert('Logout successful!')
+        this.$router.replace('login')
+      })
+    },
+    cancel: function(x){
+      db.collection('Engagements').doc(x).update({
+        participants: firebase.firestore.FieldValue.arrayRemove(firebase.auth().currentUser.uid)
+      });
+    }
+
+  },
+  created(){
+   db.collection('Engagements').where("participants", "array-contains", firebase.auth().currentUser.uid).get()
+   .then(info => {
+     info.forEach(doc => {
+       let engage = doc.data()
+       engage.id = doc.id
+       this.Engagements.push(engage)
+     })
+   })
+}
 }
 
-
-
 </script>
+<style scoped>
+ .engage, .engage2{
+   border: solid black 5px;
+   padding: 10px;
+   margin-left: 200px;
+   margin-right: 200px;
+   margin-top: 40px;
+ }
+ .engage2{
+   color: green;
+ }
+ input {
+   margin: 10px 0;
+   width: 20%;
+   padding: 15px;
+ }
+ button {
+   margin-top: 10px;
+   cursor: pointer;
+ }
+ button:hover{
 
+   color: red;
+ }
+ span {
+   display: block;
+   margin-top: 20px;
+   font-size: 11px;
+ }
+ h1{
+   color: red;
+ }
 
-function profileQuery(){
-  const db = firebase.firestore();
-  const userRef = db.collection('Users').doc(firebase.auth().currentUser.uid);
-
-  document.write(userRef.get());
-
-  const engagementsRef = db.collection("Engagements");
-
-  engagementsRef.where('participants', '==', firebase.auth().currentUser.uid).orderBy('date', 'desc').get()
-    .then(events => {
-      events.forEach(doc => {
-        data = doc.data()
-        document.write()
-    }
-
-
-
-
-
-
-    </script>
-
-     <style scoped>
-
-
-      .sign-up {
-        margin-top: 40px;
-      }
-      input {
-        margin: 10px 0;
-        width: 20%;
-        padding: 15px;
-      }
-      button {
-        margin-top: 10px;
-        width: 10%;
-        cursor: pointer;
-      }
-      span {
-        display: block;
-        margin-top: 20px;
-        font-size: 11px;
-      }
-    </style>
+</style>

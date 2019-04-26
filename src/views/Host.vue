@@ -47,7 +47,7 @@ export default {
       db.collection('Engagements').add({
         description: this.description,
         title: this.title,
-        date: this.date, //oment.utc(this.date).local().format(),
+        date: this.date.toString(), //oment.utc(this.date).local().format(),
         location: this.location,
         hid: firebase.auth().currentUser.uid,
         participants: [],
