@@ -1,7 +1,7 @@
 <template>
   <div class="host-create">
 
-   <p>Hello! {{ name }} </p>
+   <p> Hello! {{ user.name }} </p>
     <button @click="hostDashboard">Host Dashboard</button> <br>
     <button @click="logout">Logout</button>
 
@@ -15,15 +15,12 @@
   import db from '@/firebase/init'
   import firebase from 'firebase'
 
-  //const temp = firebase.auth().currentUser.uid;
-  //const currentUser = db.collections('Users').where("uid", "==", "temp").get();
-
   // @ is an alias to /src
   export default {
     name: 'hostProfile',
     data(){
       return{
-    //  name: currentUser.name
+        user: null
       }
   },
     methods: {
@@ -36,8 +33,19 @@
       hostDashboard: function(){
         this.$router.replace('hostDashboard')
     }
+  },
+  created(){
+    firebase.auth().onAuthStateChanged((user) => {
+     if(user){
+       this.user = user
+     } else {
+       this.user = null
+     }
+   })
   }
+
 }
+
 
 
 </script>
