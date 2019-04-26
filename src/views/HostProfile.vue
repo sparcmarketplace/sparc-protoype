@@ -1,7 +1,7 @@
 <template>
   <div class="host-create">
 
-
+   <p>Hello! {{ name }} </p>
     <button @click="hostDashboard">Host Dashboard</button> <br>
     <button @click="logout">Logout</button>
 
@@ -15,10 +15,17 @@
   import db from '@/firebase/init'
   import firebase from 'firebase'
 
+  const temp = firebase.auth().currentUser.uid;
+  const currentUser = db.collections('Users').where("uid", "==", "temp").get();
 
   // @ is an alias to /src
   export default {
-    name: 'home',
+    name: 'hostProfile',
+    data(){
+      return{
+    //  name: currentUser.name
+      }
+  },
     methods: {
       logout: function() {
         firebase.auth().signOut().then(() => {
@@ -33,12 +40,9 @@
 }
 
 
-
 </script>
 
-
-
-
+<!--
 function profileQuery(){
   const db = firebase.firestore();
   const userRef = db.collection('Users').doc(firebase.auth().currentUser.uid);
@@ -53,7 +57,7 @@ function profileQuery(){
 
 
 
-    </script>
+    </script> -->
 
      <style scoped>
 
