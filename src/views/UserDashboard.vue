@@ -50,8 +50,16 @@ export default {
       })
     },
     rsvp: function(){
-
+      db.collection('Engagements').where(engage.id, '==', doc.id).update({
+        participants: firebase.firestore.FieldValue.arrayUnion(firebase.auth().currentUser.uid)
+      });
+    },
+    cancel: function(){
+      db.collection('Engagements').where(engage.id, '==', doc.id).update({
+        participants: firebase.firestore.FieldValue.arrayRemove(firebase.auth().currentUser.uid)
+      });
     }
+
   },
   created(){
    db.collection('Engagements').get()

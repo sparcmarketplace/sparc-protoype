@@ -7,8 +7,9 @@
     <input type="text" v-model="email" placeholder="coffee@duke.edu"><br>
       <p>Enter the password you want to use!</p>
     <input type="password" v-model="password" placeholder="javabeans123"><br>
+      <p>Headline</p>
     <input type="text" v-model="title" placeholder="CS Student at Duke Unversity"><br>
-    <p>Please write up a short biography about yourself and your interests! (approx 100 - 200 words)</p>
+    <p>Give us a short biography about yourself and your interests!</p>
     <textarea rows="4" cols="50" placeholder = "Raised in a small town in Ireland, I...."></textarea><br>
     <p>Graduation Year</p>
     <select class="grad" name="gradyear">
