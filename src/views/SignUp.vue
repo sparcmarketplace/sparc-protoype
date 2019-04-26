@@ -99,10 +99,10 @@
               //createUser(this.age, this.bio, this.gradyear, this.host, this.name, this.title, this.location, this.company, this.jTitle)
               alert('done!')
               if(this.host){
-                this.$router.replace('host');
+                this.$router.replace('hostDashboard');
               }
               else{
-                this.$router.replace('home');
+                this.$router.replace('userDashboard');
               }
           },
           (err) => {
@@ -114,7 +114,6 @@
       },
 }
 }
-
 
 
 </script>

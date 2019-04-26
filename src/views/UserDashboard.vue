@@ -1,5 +1,15 @@
 <template>
   <div class="host-create">
+  <div class="home">
+    <h1>Welcome!</h1>
+    <h2>Upcoming Engagments:</h2>
+    <div class = "content">
+      <ul id = "engagement-list"></ul>
+    </div>
+
+
+
+
 
     <button @click="profile">User Profile</button> <br>
     <button @click="logout">Logout</button>
@@ -51,8 +61,33 @@
 
 
 
+const engagementList = document.querySelector('#engagement-list');
+
+function renderEngagement(doc){
+  let li = document.createElement('li');
+  let time = document.createElement('span');
+  let location = document.createElement('span');
+  let description = document.createElement('span');
+
+  li.setAttribute('data-id', doc.data().title);
+  time.textContent = doc.data().time;
+  location.textContent = doc.data().location;
+  description.textContent = doc.data().description;
+
+  li.appendChild(time);
+  li.appendChild(location);
+  li.appendChild(description);
+
+  engagementList.appendChild(li);
+}
 
 
+
+db.collection('Engagements').get().then(snapshot => {
+    snapshot.docs.forEach(doc => {
+        renderEngagement(doc);
+    });
+});
 
 
 
@@ -62,7 +97,7 @@ function profileQuery(){
 
   document.write(engagementsRef.get());
 
-;
+};
 
 
 
