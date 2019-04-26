@@ -34,7 +34,7 @@
 <p> Location</p>
 <input type="text" v-model="location" placeholder="New York City"><br>
 <p> Title</p>
-<input type="text" v-model="jtitle" placeholder="Senior Analyst"><br>
+<input type="text" v-model="jTitle" placeholder="Senior Analyst"><br>
 
   </div>
 
@@ -43,18 +43,14 @@
 </div>
 </template>
 
+<script src="https://www.gstatic.com/firebasejs/5.10.1/firebase-firestore.js"></script>
+<script src="https://www.gstatic.com/firebasejs/5.10.1/firebase.js"></script>
  <script>
-
-
-  import firebase from 'firebase';
-
-  firebase.initializeApp({
-    apiKey:  "AIzaSyBM5ivCG_Z6KGmSBauJlfPU9wa-_U_rOY8",
-    authDomain: "sparc-9cb68.firebaseapp.com",
-    projectId: '"sparc-9cb68"'
-  });
+  import db from '@/firebase/init'
+  import firebase from 'firebase'
 
   export default {
+
     name: 'signUp',
     data() {
       return {
@@ -73,65 +69,68 @@
     },
     methods: {
       signUp: function() {
+        switch(this.chooseone){
+          case "Host":
+            this.host = true;
+            //this.$router.replace('host');
+            break;
+          case "Engagee":
+            this.host = false;
+            //this.$router.replace('home');
+            break;
+          default:
+          //  this.$router.replace('home');
+          this.host = false;
+        }
         firebase.auth().createUserWithEmailAndPassword(this.email, this.password).then(
           (user) => {
-            alert('User made!')
-
+            db.collection('Users').add({
+              age: this.age,
+              bio: this.bio,
+              gradYear: this.gradYear,
+              host: this.host,
+              name: this.name,
+              title: this.title,
+              uid: firebase.auth().currentUser.uid,
+              location: this.location,
+              company: this.company,
+              jTitle: this.jTitle,
+            });
+              //createUser(this.age, this.bio, this.gradyear, this.host, this.name, this.title, this.location, this.company, this.jTitle)
+              alert('done!')
+              if(this.host){
+                this.$router.replace('host');
+              }
+              else{
+                this.$router.replace('home');
+              }
           },
           (err) => {
             alert('Oops. ' + err.message)
           }
         );
 
-        switch(this.chooseone){
-          case "Host":
-            this.host = true;
 
-            createUser(this.age, this.bio, this.gradyear, this.host, this.name, this.title, this.location, this.company, this.jTitle);
-
-            this.$router.replace('host');
-            break;
-          case "Engagee":
-            this.host = false;
-
-            createUser(this.age, this.bio, this.gradyear, this.host, this.name, this.title, this.location, this.company, this.jTitle);
-
-            this.$router.replace('home');
-            break;
-          default:
-            this.$router.replace('home');
-        }
-       }
-      }
+      },
 
 
 
-function createUser(age, bio, gradYear, host, name, title, location, company, jTitle){
-  const db = firebase.firestore();
-  const usersRef = db.collection('Users');
-
-  usersRef.add({
-    age: age,
-    bio: bio,
-    gradYear: gradYear,
-    host: host,
-    name: name,
-    title: title,
-    uid: firebase.auth().currentUser.uid,
-    location: location,
-    company: company,
-    jTitle: jTitle,
-  });
-
-  .then(function() {
-    console.log("Document successfully written!");
-})
-.catch(function(error) {
-    console.error("Error writing document: ", error);
-});
-
+//  createUser: function(age, bio, gradYear, host, name, title, location, company, jTitle){
+//    alert('trying')
+//   const usersRef = db.collection('Users');
+//
+//
+//
+// //   .then(function() {
+// //     console.log("Document successfully written!");
+// // })
+// // .catch(function(error) {
+// //     console.error("Error writing document: ", error);
+// // });
+//
+// }
 }
-
+}
 
 
 
