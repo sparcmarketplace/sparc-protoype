@@ -2,40 +2,36 @@
   <div class="home">
     <h1>Welcome!</h1>
     <h2>Upcoming Engagments:</h2>
-    <div class="engage">
-      <h2>Rachel Burkoff on Goldman Sachs</h2>
-      <h3>Date: April 4th, 2019</h3>
-      <h3>Location: Physics Building</h3>
-      <h3>Time: 6:30 PM</h3>
-      <h3>Description:</h3>
-      <p>.............</p>
+    <div class="engage" v-for="engage in Engagements" :key="engage.title">
+      <h2>{{ engage.title }}</h2>
+      <h3>{{ engage.time }}</h3>
+      <h3>{{ engage.description }}</h3>
       <button @click="engagement">Sign Up!</button>
 
     </div>
-
-    <div class="engage2">
-      <h2>How to get into Duke</h2>
-      <button @click="host">By: Kyle Ryan</button>
-      <h3>Date: April 6th, 2019</h3>
-      <h3>Location: West Union</h3>
-      <h3>Time: 6:30 PM</h3>
-      <h3>Description:</h3>
-      <p>.............</p>
-      <button @click="engagement">Sign Up!</button>
-
-    </div>
-    <button @click="logout">Logout</button>
-
 
   </div>
 </template>
 
 <script>
-import firebase from 'firebase';
-// @ is an alias to /src
+import db from '@/firebase/init'
+import firebase from 'firebase'
+
+const currentUser = firebase.auth().currentUser;
+
 export default {
   name: 'home',
+  data(){
+    return{
+      Engagements: []
+    }
+  },
   methods: {
+    // engagement: function(){
+    //   db.collections("Engagements").add({
+    //     participants.add(this.currentUser)
+    //   })
+    // },
     logout: function() {
       firebase.auth().signOut().then(() => {
         alert('Logout successful!')
@@ -45,8 +41,19 @@ export default {
     engagement: function(){
       this.$router.replace('thanks')
     }
-  }
+  },
+  created(){
+   db.collection('Engagements').get()
+   .then(info => {
+     info.forEach(doc => {
+       let engage = doc.data()
+       engage.id = doc.id
+       this.Engagements.push(engage)
+     })
+   })
 }
+}
+
 </script>
 <style scoped>
  .engage, .engage2{
