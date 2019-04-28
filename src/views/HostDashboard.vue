@@ -14,7 +14,7 @@
 
 <div class="engage" v-for="engage in Engagements" :key="engage.title">
   <h2>{{ engage.title }}</h2>
-  <h3>{{ engage.date, engage.location}}</h3>
+  <h3>{{ engage.date }} {{engage.location}}</h3>
   <h3>{{ engage.description }}</h3>
   <h3 v-for="participant in engage.participants" :key="participant">
     {{ participant }}
@@ -64,7 +64,7 @@ methods: {
 }
 },
 created(){
-db.collection('Engagements').where("hid", "==", firebase.auth().currentUser.uid).get() //doc(firebase.auth().currentUser.uid).get()
+db.collection('Engagements').where("hid", "==", firebase.auth().currentUser.uid).orderBy('date').get() //doc(firebase.auth().currentUser.uid).get()
 .then(info => {
  info.forEach(doc => {
    let engage = doc.data()

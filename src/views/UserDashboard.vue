@@ -4,8 +4,8 @@
     <h2>Upcoming Engagments:</h2>
     <div class="engage" v-for="engage in Engagements" :key="engage.title">
       <h2>{{ engage.title }}</h2>
-      
-      <h3>{{ engage.date, engage.location }}</h3>
+
+      <h3>{{ engage.date }} , {{ engage.location }}</h3>
     
       <p>Description:</p>
       <h3>{{ engage.description }}</h3>
@@ -64,7 +64,7 @@ export default {
     }
   },
   created(){
-   db.collection('Engagements').get()
+   db.collection('Engagements').orderBy('date').get()
    .then(info => {
      info.forEach(doc => {
        let engage = doc.data()

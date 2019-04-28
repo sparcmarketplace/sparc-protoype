@@ -1,21 +1,32 @@
 <template>
   <div class="home">
     <h1>Welcome!</h1>
+
     <h2>Your Upcoming Engagments:</h2>
-    <div class="engage" v-for="engage in Engagements" :key="engage.title">
-      <h2>{{ engage.title }}</h2>
-      <h3>{{ engage.date, engage.location }}</h3>
+
+    <!-- <button @click="sort">Sort</button> -->
+
+    <div class="engage" v-for="engage in Engagements" :key="engage.name">
+      <h2>{{ engage.name }}</h2>
+      <h3>{{ engage.date }} </h3>
       <h3>{{engage.id}}</h3>
 
+<!-- 
       <p>Description:</p>
       <h3>{{ engage.description }}</h3>
 
       <p>Tags:</p>
-      <h3>{{ engage.tags }}</h3>
+      <h3>{{ engage.tags }}</h3> -->
 
       <button @click="cancel(engage.id)">Cancel</button> <br>
 
     </div>
+   
+    <div v-for="person in User" :key="person.name">
+      <p> hello! {{ person.name }} </p>
+    </div>
+
+
     <div class="done">
       <button @click="logout">Logout</button>
       <button @click="UserDashboard">User Dashboard</button> <br>
@@ -35,7 +46,8 @@ export default {
   name: 'home',
   data(){
     return{
-      Engagements: []
+      Engagements: [],
+      User: []
     }
   },
   methods: {
@@ -57,8 +69,22 @@ export default {
       db.collection('Engagements').doc(x).update({
         participants: firebase.firestore.FieldValue.arrayRemove(firebase.auth().currentUser.uid)
       });
-    }
+     } 
+   // compare: function(a, b){
+    //   const dateA = a.date;
+    //   const dateB = b.date;
 
+    //   let comparison = 0;
+    //   if(dateA > dateB){
+    //     comparison = 1;
+    //   } else if(dateA < dateB){
+    //     comparison = -1;
+    //   }
+    //   return comparison;
+    // },
+    //  sort: function(){
+    //   this.Engagements.sort(compare)
+    // }
   },
   created(){
    db.collection('Engagements').where("participants", "array-contains", firebase.auth().currentUser.uid).get()
@@ -68,8 +94,18 @@ export default {
        engage.id = doc.id
        this.Engagements.push(engage)
      })
+   }),
+   db.collection('Users').where("uid", "==", firebase.auth().currentUser.uid).get()
+   .then(info => { 
+    info.forEach(doc => {
+       let person = doc.data()
+       person.id = doc.id
+       this.User.push(person)
+    })
    })
-}
+    
+},
+
 }
 
 </script>

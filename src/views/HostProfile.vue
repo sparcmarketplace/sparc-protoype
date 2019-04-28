@@ -20,7 +20,7 @@
     name: 'hostProfile',
     data(){
       return{
-        user: null
+         User: []
       }
   },
     methods: {
@@ -38,15 +38,23 @@
     // console.log(firebase.auth().currentUser.uid)
     // console.log(db.collection('Users').where("uid", "==", firebase.auth().currentUser.uid).get())
    
-  }
+  
     
     // .get().
     // then(response => {
     //   console.log(response.name)
     // })
-
+db.collection('Users').where("uid", "==", firebase.auth().currentUser.uid).get()
+   .then(info => { 
+    info.forEach(doc => {
+       let person = doc.data()
+       person.id = doc.id
+       this.User.push(person)
+    })
+   })
 
 }
+  }
 
 
 
