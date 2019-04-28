@@ -44,6 +44,7 @@ export default {
         this.$router.replace('login')
     },
     create: function(){
+       document.write(this.date)
 
       db.collection('Engagements').add({
         description: this.description,

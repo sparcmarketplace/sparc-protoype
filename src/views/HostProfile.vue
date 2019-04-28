@@ -1,7 +1,7 @@
 <template>
   <div class="host-create">
 
-   <p> Hello! {{ user.name }} </p>
+   <p> Hello!</p>
     <button @click="hostDashboard">Host Dashboard</button> <br>
     <button @click="logout">Logout</button>
 
@@ -13,7 +13,7 @@
 <script src="https://www.gstatic.com/firebasejs/5.10.1/firebase.js"></script>
  <script>
   import db from '@/firebase/init'
-  import firebase from 'firebase'
+  import firebase, { firestore } from 'firebase'
 
   // @ is an alias to /src
   export default {
@@ -35,14 +35,16 @@
     }
   },
   created(){
-    firebase.auth().onAuthStateChanged((user) => {
-     if(user){
-       this.user = user
-     } else {
-       this.user = null
-     }
-   })
+    // console.log(firebase.auth().currentUser.uid)
+    // console.log(db.collection('Users').where("uid", "==", firebase.auth().currentUser.uid).get())
+   
   }
+    
+    // .get().
+    // then(response => {
+    //   console.log(response.name)
+    // })
+
 
 }
 

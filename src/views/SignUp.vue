@@ -3,16 +3,17 @@
 
     <p>Sign Up for SPARC!</p>
     <div class = "left">
+      <form>
       <p>Enter your Duke email:</p>
-    <input type="text" v-model="email" placeholder="coffee@duke.edu"><br>
+    <input type="text" v-model="email" placeholder="coffee@duke.edu" required><br>
       <p>Enter the password you want to use!</p>
-    <input type="password" v-model="password" placeholder="javabeans123"><br>
+    <input type="password" v-model="password" placeholder="javabeans123" required><br>
       <p>Headline</p>
-    <input type="text" v-model="title" placeholder="CS Student at Duke Unversity"><br>
+    <input type="text" v-model="title" placeholder="CS Student at Duke Unversity" required><br>
     <p>Give us a short biography about yourself and your interests!</p>
-    <textarea rows="4" cols="50" placeholder = "Raised in a small town in Ireland, I...."></textarea><br>
+    <textarea rows="4" cols="50" placeholder = "Raised in a small town in Ireland, I...." required></textarea><br>
     <p>Graduation Year</p>
-    <select class="grad" name="gradyear">
+    <select class="grad" name="gradyear" required>
       <option value="2019">2019</option>
       <option value="2020">2020</option>
       <option value="2021">2021</option>
@@ -22,21 +23,21 @@
   </div>
     <div class = "right">
       <p>Full Name:</p>
-      <input type="text" v-model="name" placeholder="Kyle Ryan"><br>
+      <input type="text" v-model="name" placeholder="Kyle Ryan" required><br>
       <p>Age:</p>
-      <input type="number" v-model="age" placeholder="20"><br>
+      <input type="number" v-model="age" placeholder="20" required><br>
   <form> <p>Would you like to be a host or an engagee?</p>
-    <input type="radio" v-model="chooseone" value="Host"><label for="Host">Host</label><br>
-    <input type="radio" v-model="chooseone" value="Engagee"><label for="Engagee">Engagee</label><br>
+    <input type="radio" value="Host"><label for="Host">Host</label><br>
+    <input type="radio" value="Engagee"><label for="Engagee">Engagee</label><br>
   </form><br>
   <p>Input your title and information about your place of work or school</p>
   <p> Company/School</p>
-<input type="text" v-model="company" placeholder="Goldman Sachs"><br>
+<input type="text" v-model="company" placeholder="Goldman Sachs" required><br>
 <p> Location</p>
-<input type="text" v-model="location" placeholder="New York City"><br>
+<input type="text" v-model="location" placeholder="New York City" required><br>
 <p> Title</p>
-<input type="text" v-model="jTitle" placeholder="Senior Analyst"><br>
-
+<input type="text" v-model="jTitle" placeholder="Senior Analyst" required><br>
+</form>
   </div>
 
   <button @click="signUp">Sign Up</button>

@@ -36,13 +36,13 @@ h5 {
 }
 #nav {
   padding: 30px;
-  a {
+  /* a{
     font-weight: bold;
     color: #0d60f0;
     &.router-link-exact-active {
       color: #1cce3d;
     }
-  }
+  } */
 
 }
 </style>
