@@ -59,6 +59,7 @@ methods: {
     this.$router.replace('host')
 },
   cancel: function(x){
+    alert("Engagement cancelled!")
     db.collection('Engagements').doc(x).delete();
     this.$router.replace('host')
 }
