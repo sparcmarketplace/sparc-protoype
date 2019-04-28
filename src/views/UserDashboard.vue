@@ -6,7 +6,7 @@
       <h2>{{ engage.title }}</h2>
 
       <h3>{{ engage.date }} , {{ engage.location }}</h3>
-    
+
       <p>Description:</p>
       <h3>{{ engage.description }}</h3>
 
@@ -53,11 +53,13 @@ export default {
       })
     },
     rsvp: function(x){
+      alert('Sign up successful!')
       db.collection('Engagements').doc(x).update({
         participants: firebase.firestore.FieldValue.arrayUnion(firebase.auth().currentUser.uid)
       });
     },
     cancel: function(x){
+      alert('Sign up cancelled!')
       db.collection('Engagements').doc(x).update({
         participants: firebase.firestore.FieldValue.arrayRemove(firebase.auth().currentUser.uid)
       });

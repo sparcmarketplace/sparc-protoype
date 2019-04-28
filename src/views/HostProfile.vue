@@ -1,12 +1,20 @@
 <template>
-  <div class="host-create">
+  <div class="home">
 
-   <p> Hello!</p>
-    <button @click="hostDashboard">Host Dashboard</button> <br>
-    <button @click="logout">Logout</button>
+    <div v-for="person in User" :key="person.name">
+      <p> {{ person.name }} </p>
+    </div>
+
+
+    <div class="done">
+      <button @click="logout">Logout</button>
+      <button @click="HostDashboard">User Dashboard</button> <br>
+
+    </div>
 
   </div>
 </template>
+
 
 
 <script src="https://www.gstatic.com/firebasejs/5.10.1/firebase-firestore.js"></script>
@@ -37,15 +45,15 @@
   created(){
     // console.log(firebase.auth().currentUser.uid)
     // console.log(db.collection('Users').where("uid", "==", firebase.auth().currentUser.uid).get())
-   
-  
-    
+
+
+
     // .get().
     // then(response => {
     //   console.log(response.name)
     // })
 db.collection('Users').where("uid", "==", firebase.auth().currentUser.uid).get()
-   .then(info => { 
+   .then(info => {
     info.forEach(doc => {
        let person = doc.data()
        person.id = doc.id
@@ -59,43 +67,37 @@ db.collection('Users').where("uid", "==", firebase.auth().currentUser.uid).get()
 
 
 </script>
+<style scoped>
+ .engage, .engage2{
+   border: solid black 5px;
+   padding: 10px;
+   margin-left: 200px;
+   margin-right: 200px;
+   margin-top: 40px;
+ }
+ .engage2{
+   color: green;
+ }
+ input {
+   margin: 10px 0;
+   width: 20%;
+   padding: 15px;
+ }
+ button {
+   margin-top: 10px;
+   cursor: pointer;
+ }
+ button:hover{
 
-<!--
-function profileQuery(){
-  const db = firebase.firestore();
-  const userRef = db.collection('Users').doc(firebase.auth().currentUser.uid);
+   color: red;
+ }
+ span {
+   display: block;
+   margin-top: 20px;
+   font-size: 11px;
+ }
+ h1{
+   color: red;
+ }
 
-
-  document.write(userRef.get());
-
-
-
-    }
-
-
-
-
-    </script> -->
-
-     <style scoped>
-
-
-      .sign-up {
-        margin-top: 40px;
-      }
-      input {
-        margin: 10px 0;
-        width: 20%;
-        padding: 15px;
-      }
-      button {
-        margin-top: 10px;
-        width: 10%;
-        cursor: pointer;
-      }
-      span {
-        display: block;
-        margin-top: 20px;
-        font-size: 11px;
-      }
-    </style>
+</style>

@@ -4,14 +4,14 @@
 
     <h2>Your Upcoming Engagments:</h2>
 
-    <!-- <button @click="sort">Sort</button> -->
+
 
     <div class="engage" v-for="engage in Engagements" :key="engage.name">
       <h2>{{ engage.name }}</h2>
       <h3>{{ engage.date }} </h3>
       <h3>{{engage.id}}</h3>
 
-<!-- 
+
       <p>Description:</p>
       <h3>{{ engage.description }}</h3>
 
@@ -21,9 +21,9 @@
       <button @click="cancel(engage.id)">Cancel</button> <br>
 
     </div>
-   
+
     <div v-for="person in User" :key="person.name">
-      <p> hello! {{ person.name }} </p>
+      <p> {{ person.name }} </p>
     </div>
 
 
@@ -66,10 +66,11 @@ export default {
       })
     },
     cancel: function(x){
+      alert('Sign up cancelled!')
       db.collection('Engagements').doc(x).update({
         participants: firebase.firestore.FieldValue.arrayRemove(firebase.auth().currentUser.uid)
       });
-     } 
+     }
    // compare: function(a, b){
     //   const dateA = a.date;
     //   const dateB = b.date;
@@ -96,14 +97,14 @@ export default {
      })
    }),
    db.collection('Users').where("uid", "==", firebase.auth().currentUser.uid).get()
-   .then(info => { 
+   .then(info => {
     info.forEach(doc => {
        let person = doc.data()
        person.id = doc.id
        this.User.push(person)
     })
    })
-    
+
 },
 
 }
