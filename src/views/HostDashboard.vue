@@ -16,7 +16,7 @@
   <h2>{{ engage.title }}</h2>
   <h3>{{ engage.date, engage.location}}</h3>
   <h3>{{ engage.description }}</h3>
-  <h3 v-for="participant in engage.participants">
+  <h3 v-for="participant in engage.participants" :key="participant">
     {{ participant }}
   </h3>
   <h3>{{ engage.tags }}</h3>

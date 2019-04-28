@@ -4,8 +4,7 @@
     <p>Title:</p>
     <input type="text" v-model="title" placeholder="Consulting for Undergraduates"><br>
     <p>Date and Time:</p>
-    <input type="date" name="date"><br>
-    <input type="time" name="time"><br>
+    <input type="datetime-local" v-model="date"><br>
     <p>Location:</p>
     <input type="text" v-model="location" placeholder="Bryan Center 111"><br>
     <p>Please give a brief description of the event</p>
@@ -44,8 +43,6 @@ export default {
         this.$router.replace('login')
     },
     create: function(){
-       document.write(this.date)
-
       db.collection('Engagements').add({
         description: this.description,
         title: this.title,
