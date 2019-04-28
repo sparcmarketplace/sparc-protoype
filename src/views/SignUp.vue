@@ -39,8 +39,13 @@
       <p>Title</p>
         <input type="text" v-model="jTitle" placeholder="Senior Analyst" required><br>
     </div>
+
+
   <input type="submit" @click="signUp">
 </form>
+
+    <imageUpload />
+
 
   <span>or go back to <router-link to="/login">login</router-link>.</span>
 </div>
@@ -52,10 +57,12 @@
  <script>
   import db from '@/firebase/init'
   import firebase from 'firebase'
+  import imageupload from './SignUp2.vue'
 
   export default {
 
     name: 'signUp',
+    components: [ imageupload ],
     data() {
       return {
         email: '',
@@ -102,12 +109,7 @@
             });
               //createUser(this.age, this.bio, this.gradyear, this.host, this.name, this.title, this.location, this.company, this.jTitle)
               alert('done!')
-              if(this.host){
-                this.$router.replace('hostDashboard');
-              }
-              else{
-                this.$router.replace('userDashboard');
-              }
+             this.$router.replace('sign-up-2');
           },
           (err) => {
             alert('Oops. ' + err.message)

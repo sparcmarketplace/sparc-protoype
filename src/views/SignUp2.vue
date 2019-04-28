@@ -1,14 +1,10 @@
 <template>
   <div class="sign-up-2">
-    <h3>Please Input Some More Information</h3>
-    <p>First Name:</p>
-    <input type="text" v-model="fname" placeholder="Kyle"><br>
-    <p>Last Name:</p>
-    <input type="text" v-model="lname" placeholder="Ryan"><br>
-    <form> <p>Would you like to be a host or an engagee?</p>
-      <input type="radio" v-model="chooseone" value="Host"><label for="Host">Host</label><br>
-      <input type="radio" v-model="chooseone" value="Engagee"><label for="Engagee">Engagee</label><br>
-    </form><br>
+     <form enctype="multipart/form-data" action="uploader.php" method="POST">
+        <input type="hidden" name="MAX_FILE_SIZE" value="100000" />
+            Choose a file to upload: <input name="uploadedfile" type="file" /><br />
+        <input type="submit" value="Upload File" />
+</form>
     <button @click="signUpDone">Complete Sign Up</button>
     <span>or go back to <router-link to="/login">login</router-link>.</span>
   </div>
