@@ -47,9 +47,11 @@ export default {
         this.$router.replace('login')
     },
     create: function(){
-      dates: this.date.split("T")
-      days: dates[0].split("-")
-      switch(days[1]){
+      this.dates = this.date.split("T");
+      console.log(this.dates)
+      this.days =  this.dates[0].split("-");
+
+      switch(this.days[1]){
         case "1":
           this.month = "January";
           break;
@@ -87,7 +89,7 @@ export default {
           this.month = "December";
           break;
       }
-      this.date = this.month.concat(" "+days[2]+", "+days[0]+" "+dates[1])
+      this.date = this.month.concat(" "+this.days[2]+", "+this.days[0]+" "+this.dates[1])
 
       db.collection('Engagements').add({
         description: this.description,
