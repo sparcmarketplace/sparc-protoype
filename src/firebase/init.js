@@ -1,5 +1,5 @@
-import firebase from 'firebase'
-import firestore from 'firebase/firestore'
+import firebase from "firebase";
+import firestore from "firebase/firestore";
 
 // Initialize firebase
 var config = {
@@ -12,7 +12,7 @@ var config = {
 };
 
 const firebaseApp = firebase.initializeApp(config);
-firebaseApp.firestore().settings({ timestampsInSnapshots: true })
+firebaseApp.firestore().settings({ timestampsInSnapshots: true });
 
 // export firestore database
-export default firebaseApp.firestore()
+export default firebaseApp.firestore();

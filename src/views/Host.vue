@@ -2,57 +2,76 @@
   <div class="host-create">
     <h3>Please input information to create an engagement!</h3>
     <p>Title:</p>
-    <input type="text" v-model="title" placeholder="Consulting for Undergraduates"><br>
+    <input
+      type="text"
+      v-model="title"
+      placeholder="Consulting for Undergraduates"
+    /><br />
     <p>Date and Time:</p>
-    <input type="datetime-local" v-model="date"><br>
+    <input type="datetime-local" v-model="date" /><br />
     <p>Location:</p>
-    <input type="text" v-model="location" placeholder="Bryan Center 111"><br>
+    <input
+      type="text"
+      v-model="location"
+      placeholder="Bryan Center 111"
+    /><br />
     <p>Please give a brief description of the event</p>
-    <textarea rows="4" cols="50" v-model="description" placeholder = "We will discuss company culture at..."></textarea><br>
+    <textarea
+      rows="4"
+      cols="50"
+      v-model="description"
+      placeholder="We will discuss company culture at..."
+    ></textarea
+    ><br />
     <p>Tags: Space delimited</p>
-    <input type="text" v-model="tags" placeholder="consulting Bain New York"><br>
+    <input
+      type="text"
+      v-model="tags"
+      placeholder="consulting Bain New York"
+    /><br />
 
-
-    <button @click="create">Create Engagement</button> <br>
+    <button @click="create">Create Engagement</button> <br/>
     <button @click="logout">Logout</button>
-
   </div>
 </template>
 
 <script src="https://www.gstatic.com/firebasejs/5.10.1/firebase-firestore.js"></script>
 <script src="https://www.gstatic.com/firebasejs/5.10.1/firebase.js"></script>
 <script>
-
-import db from '@/firebase/init'
-import firebase from 'firebase'
+import db from "@/firebase/init";
+import firebase from "firebase";
 
 export default {
-  name: 'host',
+  name: "host",
   data() {
     return {
-      title: '',
-      date: '',
-      description: '',
-      location:'',
-      tags:'',
+      title: "",
+      date: "",
+      description: "",
+      location: "",
+      tags: "",
       dates: [],
       days: [],
       times: [],
-      month: ''
-    }
+      month: ""
+    };
   },
   methods: {
     logout: function() {
-        alert('Logout successful!')
-        this.$router.replace('login')
+      firebase
+        .auth()
+        .signOut()
+        .then(() => {
+      alert("Logout successful!");
+      this.$router.replace('login');
+    });
     },
-    create: function(){
-
-      this.dates = this.date.split("T")
-      console.log(this.date)
-      this.days =  this.dates[0].split("-")
-      console.log(this.days[1])
-      switch(this.days[1]){
+    create: function() {
+      this.dates = this.date.split("T");
+      console.log(this.date);
+      this.days = this.dates[0].split("-");
+      console.log(this.days[1]);
+      switch (this.days[1]) {
         case "01":
           this.month = "January";
           break;
@@ -86,13 +105,15 @@ export default {
         case "11":
           this.month = "November";
           break;
-         case "12":
+        case "12":
           this.month = "December";
           break;
       }
-      this.date = this.month.concat(" "+this.days[2]+", "+this.days[0]+" "+this.dates[1])
+      this.date = this.month.concat(
+        " " + this.days[2] + ", " + this.days[0] + " " + this.dates[1]
+      );
 
-      db.collection('Engagements').add({
+      db.collection("Engagements").add({
         description: this.description,
         title: this.title,
         date: this.date, //str.concat(this.date, this.time), //oment.utc(this.date).local().format(),
@@ -101,34 +122,32 @@ export default {
         // hname: firebase.auth().currentUser.name,
         participants: [],
         tags: this.tags.split(" ")
-
       });
-      alert('Engagement Created!')
 
-      this.$router.replace('HostDashboard')
+      this.$router.replace("HostDashboard");
       //need to reroute to host dashboard
     }
   }
-}
+};
 </script>
 
 <style scoped>
- .sign-up-2 {
-   margin-top: 40px;
- }
- input {
-   margin: 10px 0;
-   width: 20%;
-   padding: 15px;
- }
- button {
-   margin-top: 10px;
-   width: 10%;
-   cursor: pointer;
- }
- span {
-   display: block;
-   margin-top: 20px;
-   font-size: 11px;
- }
+.sign-up-2 {
+  margin-top: 40px;
+}
+input {
+  margin: 10px 0;
+  width: 20%;
+  padding: 15px;
+}
+button {
+  margin-top: 10px;
+  width: 10%;
+  cursor: pointer;
+}
+span {
+  display: block;
+  margin-top: 20px;
+  font-size: 11px;
+}
 </style>

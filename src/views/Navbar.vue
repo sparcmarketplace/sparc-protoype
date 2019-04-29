@@ -1,9 +1,10 @@
 <template>
-    <!-- code for navbar mostly from: https://github.com/johndatserakis/vue-navigation-bar -->
-    <vue-navigation-bar :options="navbarOptions" />
+  <!-- code for navbar mostly from: https://github.com/johndatserakis/vue-navigation-bar -->
+  <vue-navigation-bar :options="navbarOptions" />
 </template>
 
-// <script>
+//
+<script>
 //     export default {
 //         name: 'navbar',
 //         data () {
@@ -74,7 +75,7 @@
 //                                 },
 //                             ]
 //                         },
-                     
+
 //                     ],
 //                     menuOptionsRight: [
 //                         {
@@ -95,9 +96,11 @@
 //             }
 //         }
 //     }
-// </script>
+//
+</script>
 
-// <style lang="scss">
+//
+<style lang="scss">
 //     .vnb {
 //         .button-red {
 //             background: #FF3B30;
@@ -107,4 +110,5 @@
 //             }
 //         }
 //     }
-// </style>
+//
+</style>

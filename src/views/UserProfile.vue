@@ -1,58 +1,51 @@
 <template>
-
   <div class="home">
-    
-   
-    <div class='split left' v-for="person in User" :key="person.name">
-      
-      <div class = 'centered'>
-    <button @click="logout">Logout</button>
-    <button @click="UserDashboard">User Dashboard</button> <br>
-      <h1> {{ person.name }} </h1>
-      <h3> {{person.title}} </h3>
-      <p> {{person.bio}} </p>
-      <h6> {{person.jTitle}} at {{person.company}}, {{person.location}} </h6>
-      <hr>
+    <div class="split left" v-for="person in User" :key="person.name">
+      <div class="centered">
+        <button @click="logout">Logout</button>
+        <button @click="UserDashboard">User Dashboard</button> <br />
+        <span><router-link to="/hostDashboard"><button>Host Dashboard</button></router-link></span><br>
+        <h1>{{ person.name }}</h1>
+        <h3>{{ person.title }}</h3>
+        <p>{{ person.bio }}</p>
+        <h6>
+          {{ person.jTitle }} at {{ person.company }}, {{ person.location }}
+        </h6>
+        <hr />
       </div>
     </div>
 
-   
-    <div class = "split right">
-    <h2 class="rsvp">Your Upcoming RSVPs:</h2>
-    <div class = "centered">
-    
-    <div class="card" v-for="engage in Engagements" :key="engage.title">
-      <div class = "container">
-      <h2>{{ engage.title }}</h2>
-       <p>{{ engage.description }}</p>
-       <p>{{ engage.date }} {{engage.location}}</p>
-       <hr>
-       <p>Tags: {{engage.tags}}</p>
-      <button @click="cancel(engage.id)">Cancel</button> <br>
+    <div class="split right">
+      <h2 class="rsvp">Your Upcoming RSVPs:</h2>
+      <div class="centered">
+        <div class="card" v-for="engage in Engagements" :key="engage.title">
+          <div class="container">
+            <h2>{{ engage.title }}</h2>
+            <p>{{ engage.description }}</p>
+            <p>{{ engage.date }} {{ engage.location }}</p>
+            <hr />
+            <p>Tags: {{ engage.tags }}</p>
+            <button @click="cancel(engage.id)">Cancel</button> <br />
+          </div>
+        </div>
       </div>
-      </div>
-
     </div>
-    
-    
-
-  </div>
   </div>
 </template>
 
 <script>
-import db from '@/firebase/init'
-import firebase from 'firebase'
+import db from "@/firebase/init";
+import firebase from "firebase";
 
 const currentUser = firebase.auth().currentUser;
 
 export default {
-  name: 'home',
-  data(){
-    return{
+  name: "home",
+  data() {
+    return {
       Engagements: [],
       User: []
-    }
+    };
   },
   methods: {
     // engagement: function(){
@@ -60,22 +53,29 @@ export default {
     //     participants.add(this.currentUser)
     //   })
     // },
-    UserDashboard: function(){
-      this.$router.replace('home')
+    UserDashboard: function() {
+      this.$router.replace("home");
     },
     logout: function() {
-      firebase.auth().signOut().then(() => {
-        alert('Logout successful!')
-        this.$router.replace('login')
-      })
+      firebase
+        .auth()
+        .signOut()
+        .then(() => {
+          alert("Logout successful!");
+          this.$router.replace("login");
+        });
     },
-    cancel: function(x){
-      alert('Sign up cancelled!')
-      db.collection('Engagements').doc(x).update({
-        participants: firebase.firestore.FieldValue.arrayRemove(firebase.auth().currentUser.email)
-      });
-     }
-   // compare: function(a, b){
+    cancel: function(x) {
+      alert("Sign up cancelled!");
+      db.collection("Engagements")
+        .doc(x)
+        .update({
+          participants: firebase.firestore.FieldValue.arrayRemove(
+            firebase.auth().currentUser.email
+          )
+        });
+    }
+    // compare: function(a, b){
     //   const dateA = a.date;
     //   const dateB = b.date;
 
@@ -91,40 +91,46 @@ export default {
     //   this.Engagements.sort(compare)
     // }
   },
-  created(){
-   db.collection('Engagements').where("participants", "array-contains", firebase.auth().currentUser.email).get()
-   .then(info => {
-     info.forEach(doc => {
-       let engage = doc.data()
-       engage.id = doc.id
-       this.Engagements.push(engage)
-     })
-   }),
-   db.collection('Users').where("uid", "==", firebase.auth().currentUser.uid).get()
-   .then(info => {
-    info.forEach(doc => {
-       let person = doc.data()
-       person.id = doc.id
-       this.User.push(person)
-    })
-   })
-
-},
-
-}
-
+  created() {
+    db
+      .collection("Engagements")
+      .where(
+        "participants",
+        "array-contains",
+        firebase.auth().currentUser.email
+      )
+      .get()
+      .then(info => {
+        info.forEach(doc => {
+          let engage = doc.data();
+          engage.id = doc.id;
+          this.Engagements.push(engage);
+        });
+      }),
+      db
+        .collection("Users")
+        .where("uid", "==", firebase.auth().currentUser.uid)
+        .get()
+        .then(info => {
+          info.forEach(doc => {
+            let person = doc.data();
+            person.id = doc.id;
+            this.User.push(person);
+          });
+        });
+  }
+};
 </script>
 <style scoped>
-
-.rsvp{
+.rsvp {
 }
 /* .card,.right{
   width: 50%
 } */
 
- .card {
+.card {
   /* Add shadows to create the "card" effect */
-  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
   transition: 0.3s;
   /* margin-right: 50px;
   margin-left: 750px; */
@@ -134,14 +140,14 @@ export default {
 
 /* On mouse-over, add a deeper shadow */
 .card:hover {
-  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+  box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
 }
 
 /* Add some padding inside the card container */
 .container {
   padding: 50px 16px;
 }
-.split{
+.split {
   height: 80%;
   width: 50%;
   position: fixed;
@@ -150,12 +156,11 @@ export default {
   overflow-x: scroll;
   padding-top: 20px;
 }
-.left{
+.left {
   left: 0;
 }
-.right{
+.right {
   right: 0;
-
 }
 .centered {
   position: absolute;
@@ -165,41 +170,27 @@ export default {
   text-align: center;
 }
 
-
- .engage, .engage2{
-   border: solid black 5px;
-   padding: 10px;
-   margin-left: 200px;
-   margin-right: 200px;
-   margin-top: 200px;
- }
- .engage2{
-   color: green;
- }
- input {
-   margin: 10px 0;
-   width: 20%;
-   padding: 15px;
- }
- button {
-   margin-top: 10px;
-   cursor: pointer;
- }
- button:hover{
-
-   color: red;
- }
- span {
-   display: block;
-   margin-top: 20px;
-   font-size: 10px;
- }
- h1{
-   color: lightseagreen;
- }
- h6{
-   color: black;
- }
- 
-
+input {
+  margin: 10px 0;
+  width: 20%;
+  padding: 15px;
+}
+button {
+  margin-top: 10px;
+  cursor: pointer;
+}
+button:hover {
+  color: red;
+}
+span {
+  display: block;
+  margin-top: 20px;
+  font-size: 10px;
+}
+h1 {
+  color: lightseagreen;
+}
+h6 {
+  color: black;
+}
 </style>

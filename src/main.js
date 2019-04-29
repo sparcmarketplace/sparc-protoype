@@ -1,15 +1,15 @@
-import  Vue  from 'vue'
-import App from './App.vue'
-import  router  from './router'
-import store from './store'
-import './registerServiceWorker'
-import firebase from 'firebase'
-import firestore from 'firebase/firestore'
+import Vue from "vue";
+import App from "./App.vue";
+import router from "./router";
+import store from "./store";
+import "./registerServiceWorker";
+import firebase from "firebase";
+import firestore from "firebase/firestore";
 
-Vue.config.productionTip = false
+Vue.config.productionTip = false;
 
 let app = null;
-  /* eslint-disable */
+/* eslint-disable */
   firebase.auth().onAuthStateChanged(() => {
     if (!app) { //eslint-disable no
        app = new Vue({
