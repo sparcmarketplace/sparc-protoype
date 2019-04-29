@@ -1,6 +1,5 @@
 import Vue from 'vue';
 import Router from 'vue-router';
-
 import Home from './views/Home.vue';
 import Login from './views/Login.vue';
 import SignUp from './views/SignUp.vue';
@@ -11,6 +10,8 @@ import UserProfile from './views/UserProfile.vue';
 import HostProfile from './views/HostProfile.vue';
 import HostDashboard from './views/HostDashboard.vue';
 import UserDashboard from './views/UserDashboard.vue';
+import Welcome from './views/Welcome.vue';
+import firebase from 'firebase';
 
 
 
@@ -21,11 +22,16 @@ const router = new Router({
   routes: [
     {
       path: '*',
-      redirect: '/login'
+      redirect: '/welcome'
     },
     {
       path: '/',
-      redirect: '/login'
+      redirect: '/welcome'
+    },
+    {
+       path: '/welcome',
+       name: 'Welcome',
+       component: Welcome
     },
     {
       path: '/login',
@@ -45,22 +51,34 @@ const router = new Router({
     {
       path: '/hostProfile',
       name: 'hostProfile',
-      component: HostProfile
+      component: HostProfile,
+      meta: {
+        requiresAuth: true
+      }
     },
     {
       path: '/userProfile',
       name: 'userProfile',
-      component: UserProfile
+      component: UserProfile,
+      meta: {
+        requiresAuth: true
+      }
     },
     {
       path: '/userDashboard',
       name: 'userDashboard',
-      component: UserDashboard
+      component: UserDashboard,
+      meta: {
+        requiresAuth: true
+      }
     },
     {
       path: '/hostDashboard',
       name: 'hostDashboard',
-      component: HostDashboard
+      component: HostDashboard,
+      meta: {
+        requiresAuth: true
+      }
     },
     {
       path: '/sign-up-2',
@@ -71,6 +89,10 @@ const router = new Router({
         path: '/host',
         name: 'Host',
         component: Host,
+        meta: {
+          requiresAuth: true
+        }
+
     },
     {
       path: '/home',
@@ -83,14 +105,14 @@ const router = new Router({
 
   ]
 });
-//
-// router.beforeEach((to, from, next) => {
-//   const currentUser = firebase.auth().currentUser;
-//   const requiresAuth = to.matched.some(record => record.meta.requiresAuth);
-//
-//   if (requiresAuth && !currentUser) next('login');
-//   else if (!requiresAuth && currentUser) next('home');
-//   else next();
-// });
+
+router.beforeEach((to, from, next) => {
+  const currentUser = firebase.auth().currentUser;
+  const requiresAuth = to.matched.some(record => record.meta.requiresAuth);
+
+  if (requiresAuth && !currentUser) next('login');
+  else if (!requiresAuth && currentUser) next('home');
+  else next();
+});
 
 export default router;

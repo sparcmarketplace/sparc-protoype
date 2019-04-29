@@ -38,11 +38,6 @@ export default {
     }
   },
   methods: {
-    // engagement: function(){
-    //   db.collections("Engagements").add({
-    //     participants.add(this.currentUser)
-    //   })
-    // },
     UserProfile: function(){
       this.$router.replace('userProfile')
     },

@@ -40,14 +40,16 @@
         <input type="text" v-model="jTitle" placeholder="Senior Analyst" required><br>
     </div>
 
-
-  <input type="submit" @click="signUp">
+          <input type="submit" @click="signUp">
 </form>
+        <div class="under">
 
     <imageUpload />
 
 
-  <span>or go back to <router-link to="/login">login</router-link>.</span>
+          <span>or go back to <router-link to="/login">login</router-link>.</span>
+
+    </div>
 </div>
 </template>
 
@@ -57,12 +59,12 @@
  <script>
   import db from '@/firebase/init'
   import firebase from 'firebase'
-  import imageupload from './SignUp2.vue'
+  import imageUpload from './SignUp2.vue'
 
   export default {
 
     name: 'signUp',
-    components: [ imageupload ],
+    components: { imageUpload },
     data() {
       return {
         email: '',
@@ -126,7 +128,12 @@
 
  <style scoped>
 
-
+  .left{
+    float: left;
+  }
+  .right{
+    float: right;
+  }
   .sign-up {
     margin-top: 40px;
   }
