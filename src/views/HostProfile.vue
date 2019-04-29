@@ -3,6 +3,9 @@
 
     <div v-for="person in User" :key="person.name">
       <p> {{ person.name }} </p>
+      <p> {{ person.age }} </p>
+      <p> {{ person.bio }} </p>
+
     </div>
 
 
