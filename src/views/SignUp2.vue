@@ -11,6 +11,27 @@
 </template>
 
 <script>
+  uploadedFile.addEventListener('change', function(e)){
+    e.preventDefault();
+    var file = e.target.files[0];
+
+    firebase.storage().ref('profile_pics/' + file.name);
+
+    storageRef.put(file);
+  }
+
+
+</script>
+
+
+var storageRef = firebase.storage().ref();
+var picRef = storageRef.child('profile_pics/' + file.name);
+
+<img src=picRef alt="Profile Picture" width="500" height="333">
+
+
+
+<script>
 
  export default {
    name: 'signUpDone',
