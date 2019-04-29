@@ -30,7 +30,7 @@
             // this.$router.replace('home')
             // }
             //
-            // this.$router.replace('home')
+            this.$router.replace('home')
           },
           (err) => {
             alert('Oops. ' + err.message)

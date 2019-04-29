@@ -1,9 +1,9 @@
 import Vue from 'vue';
 import Router from 'vue-router';
-import Home from './views/Home.vue';
+//import Home from './views/Home.vue';
 import Login from './views/Login.vue';
 import SignUp from './views/SignUp.vue';
-import SignUp2 from './views/SignUp2.vue';
+//import SignUp2 from './views/SignUp2.vue';
 import Thanks from './views/Thanks.vue';
 import Host from './views/Host.vue';
 import UserProfile from './views/UserProfile.vue';
@@ -80,11 +80,11 @@ const router = new Router({
         requiresAuth: true
       }
     },
-    {
-      path: '/sign-up-2',
-      name: 'SignUp2',
-      component: SignUp2
-    },
+    // {
+    //   path: '/sign-up-2',
+    //   name: 'SignUp2',
+    //   component: SignUp2
+    // },
     {
         path: '/host',
         name: 'Host',
@@ -105,6 +105,9 @@ const router = new Router({
 
   ]
 });
+
+// import VueNavigationBar from 'vue-navigation-bar'
+// Vue.component('vue-navigation-bar', VueNavigationBar)
 
 router.beforeEach((to, from, next) => {
   const currentUser = firebase.auth().currentUser;

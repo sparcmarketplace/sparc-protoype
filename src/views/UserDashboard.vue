@@ -1,20 +1,23 @@
 <template>
-  <div class="home">
+  <div class="open">
     <h1>Welcome!</h1>
-    <h2>Upcoming Engagments:</h2>
-    <div class="engage" v-for="engage in Engagements" :key="engage.title">
-      // <h2>{{ engage.title }}</h2>
-      //
-      // <h3>{{ engage.date }} , {{ engage.location }}</h3>
-      //
-      // <p>Description:</p>
-      // <h3>{{ engage.description }}</h3>
-      //
-      // <p>Tags:</p>
-      // <h3>{{ engage.tags }}</h3>
+    <h2>Upcoming Engagements:</h2>
+    <div class="card" v-for="engage in Engagements" :key="engage.title">
+      <div class = "container">
+       <h2>{{ engage.title }}</h2>
+      
+       <h3>{{ engage.date }} , {{ engage.location }}</h3>
+      
+       <p>Description:</p>
+       <h3>{{ engage.description }}</h3>
+      
+       <p>Tags:</p>
+       <h3>{{ engage.tags }}</h3>
+      <button @click="rsvp(engage.id)">Sign Up</button> <br>
+              <button @click="cancel(engage.id)">Cancel</button> <br>
+</div>
 
-
-          <b-card-group deck class="mb-3">
+          <!-- <b-card-group deck class="mb-3">
             <b-card border-variant="light" header={{ engage.title }} class="text-left">
               <b-card-text>
                 <p>{{ engage.description }}</p>
@@ -24,12 +27,13 @@
 
               // <p>Hosted By: {{engage.hname}}</p>
 
-              <b-card-text>  <p>{{ engage.date }} , {{ engage.location }}<p>  </b-card-text>
+              <b-card-text>  <p>{{ engage.date }} , {{ engage.location }}</p>  </b-card-text>
 
 
               <button @click="rsvp(engage.id)">Sign Up</button> <br>
               <button @click="cancel(engage.id)">Cancel</button> <br>
-        </b-card-group>
+            </b-card>
+        </b-card-group> -->
 
     </div>
     <div class="done">
@@ -41,22 +45,7 @@
   </div>
 </template>
 
-// <div>
-//     <b-card-group deck class="mb-3">
-//       <b-card border-variant="light" header={{ engage.title }} class="text-left">
-//         <b-card-text>
-//           <p>{{ engage.description }}</p>
-//
-//         </b-card-text>
-//         <p>Tags:{{ engage.tags }}</p>
-//
-//         <div v-for="person in User" :key="person.name">
-//           <p> Hosted by {{ person.name }} </p>
-//         </div>
-//
-//     <b-card-text>  <p>{{ engage.date }} , {{ engage.location }}<p>  </b-card-text>
-//   </b-card-group>
-// </div>
+
 
 <script>
 import db from '@/firebase/init'
@@ -145,4 +134,22 @@ export default {
  h1{
    color: red;
  }
+ .card {
+  /* Add shadows to create the "card" effect */
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+  transition: 0.3s;
+  margin-right: 300px;
+  margin-left: 300px;
+}
+
+/* On mouse-over, add a deeper shadow */
+.card:hover {
+  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+}
+
+/* Add some padding inside the card container */
+.container {
+  padding: 2px 16px;
+}
+
 </style>
