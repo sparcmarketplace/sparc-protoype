@@ -1,7 +1,7 @@
 <template>
   <div class="home">
 
-    <div v-for="person in User" :key="person.name">
+    <div class="user" v-for="person in User" :key="person.name">
       <p> {{ person.name }} </p>
       <p> {{ person.age }} </p>
       <p> {{ person.bio }} </p>
@@ -11,7 +11,7 @@
 
     <div class="done">
       <button @click="logout">Logout</button>
-      <button @click="HostDashboard">User Dashboard</button> <br>
+      <button @click="HostDashboard">Host Dashboard</button> <br>
 
     </div>
 
@@ -41,7 +41,7 @@
           this.$router.replace('login')
         })
       },
-      hostDashboard: function(){
+      HostDashboard: function(){
         this.$router.replace('hostDashboard')
     }
   },

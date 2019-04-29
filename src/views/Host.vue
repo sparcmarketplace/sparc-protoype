@@ -47,36 +47,37 @@ export default {
         this.$router.replace('login')
     },
     create: function(){
-      this.dates = this.date.split("T");
-      console.log(this.dates)
-      this.days =  this.dates[0].split("-");
 
+      this.dates = this.date.split("T")
+      console.log(this.date)
+      this.days =  this.dates[0].split("-")
+      console.log(this.days[1])
       switch(this.days[1]){
-        case "1":
+        case "01":
           this.month = "January";
           break;
-        case "2":
+        case "02":
           this.month = "February";
           break;
-        case "3":
+        case "03":
           this.month = "March";
           break;
-        case "4":
+        case "04":
           this.month = "April";
           break;
-        case "5":
+        case "05":
           this.month = "May";
           break;
-        case "6":
+        case "06":
           this.month = "June";
           break;
-        case "7":
+        case "07":
           this.month = "July";
           break;
-        case "8":
+        case "08":
           this.month = "August";
           break;
-        case "9":
+        case "09":
           this.month = "September";
           break;
         case "10":

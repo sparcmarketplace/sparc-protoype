@@ -1,38 +1,42 @@
 <template>
+
   <div class="home">
-    <h1>Welcome!</h1>
+    
+   
+    <div class='split left' v-for="person in User" :key="person.name">
+      
+      <div class = 'centered'>
+    <button @click="logout">Logout</button>
+    <button @click="UserDashboard">User Dashboard</button> <br>
+      <h1> {{ person.name }} </h1>
+      <h3> {{person.title}} </h3>
+      <p> {{person.bio}} </p>
+      <h6> {{person.jTitle}} at {{person.company}}, {{person.location}} </h6>
+      <hr>
+      </div>
+    </div>
 
-    <h2>Your Upcoming Engagments:</h2>
-
-
-
-    <div class="engage" v-for="engage in Engagements" :key="engage.name">
-      <h2>{{ engage.name }}</h2>
-      <h3>{{ engage.date }} </h3>
-      <h3>{{engage.id}}</h3>
-
-
-      <p>Description:</p>
-      <h3>{{ engage.description }}</h3>
-
-      <p>Tags:</p>
-      <h3>{{ engage.tags }}</h3> -->
-
+   
+    <div class = "split right">
+    <h2 class="rsvp">Your Upcoming RSVPs:</h2>
+    <div class = "centered">
+    
+    <div class="card" v-for="engage in Engagements" :key="engage.title">
+      <div class = "container">
+      <h2>{{ engage.title }}</h2>
+       <p>{{ engage.description }}</p>
+       <p>{{ engage.date }} {{engage.location}}</p>
+       <hr>
+       <p>Tags: {{engage.tags}}</p>
       <button @click="cancel(engage.id)">Cancel</button> <br>
+      </div>
+      </div>
 
     </div>
+    
+    
 
-    <div v-for="person in User" :key="person.name">
-      <p> {{ person.name }} </p>
-    </div>
-
-
-    <div class="done">
-      <button @click="logout">Logout</button>
-      <button @click="UserDashboard">User Dashboard</button> <br>
-
-    </div>
-
+  </div>
   </div>
 </template>
 
@@ -68,7 +72,7 @@ export default {
     cancel: function(x){
       alert('Sign up cancelled!')
       db.collection('Engagements').doc(x).update({
-        participants: firebase.firestore.FieldValue.arrayRemove(firebase.auth().currentUser.uid)
+        participants: firebase.firestore.FieldValue.arrayRemove(firebase.auth().currentUser.email)
       });
      }
    // compare: function(a, b){
@@ -88,7 +92,7 @@ export default {
     // }
   },
   created(){
-   db.collection('Engagements').where("participants", "array-contains", firebase.auth().currentUser.uid).get()
+   db.collection('Engagements').where("participants", "array-contains", firebase.auth().currentUser.email).get()
    .then(info => {
      info.forEach(doc => {
        let engage = doc.data()
@@ -111,12 +115,63 @@ export default {
 
 </script>
 <style scoped>
+
+.rsvp{
+}
+/* .card,.right{
+  width: 50%
+} */
+
+ .card {
+  /* Add shadows to create the "card" effect */
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+  transition: 0.3s;
+  /* margin-right: 50px;
+  margin-left: 750px; */
+  width: 100%;
+  margin-right: 0px;
+}
+
+/* On mouse-over, add a deeper shadow */
+.card:hover {
+  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+}
+
+/* Add some padding inside the card container */
+.container {
+  padding: 50px 16px;
+}
+.split{
+  height: 80%;
+  width: 50%;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  overflow-x: scroll;
+  padding-top: 20px;
+}
+.left{
+  left: 0;
+}
+.right{
+  right: 0;
+
+}
+.centered {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-25%, -25%);
+  text-align: center;
+}
+
+
  .engage, .engage2{
    border: solid black 5px;
    padding: 10px;
    margin-left: 200px;
    margin-right: 200px;
-   margin-top: 40px;
+   margin-top: 200px;
  }
  .engage2{
    color: green;
@@ -137,10 +192,14 @@ export default {
  span {
    display: block;
    margin-top: 20px;
-   font-size: 11px;
+   font-size: 10px;
  }
  h1{
-   color: red;
+   color: lightseagreen;
  }
+ h6{
+   color: black;
+ }
+ 
 
 </style>

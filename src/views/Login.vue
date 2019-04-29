@@ -4,6 +4,7 @@
     <input type="text" v-model="email" placeholder="Email"><br>
     <input type="password" v-model="password" placeholder="Password"><br>
     <button @click="login">Login</button>
+  
     <p> If you don't have an account yet, you can <router-link to="/sign-up">create one!</router-link></p>
   </div>
 </template>
@@ -23,7 +24,7 @@
       login: function() {
         firebase.auth().signInWithEmailAndPassword(this.email, this.password).then(
           (user) => {
-            alert('Login successful!')
+          
             //
             // if db.collection(Users).where("uid", "==", firebase.auth().currentUser.uid).where('host', "==", true).get(){
             //
@@ -63,4 +64,5 @@
     text-decoration: underline;
     cursor: pointer;
   }
+
 </style>
