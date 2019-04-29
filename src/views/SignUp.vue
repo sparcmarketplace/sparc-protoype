@@ -2,14 +2,14 @@
 <div class="sign-up">
 
  <form>
-    <p>Sign Up for SPARC!</p>
-    <div class = "left">
+    <h2>Sign Up for SPARC!</h2>
+    <div class = "right">
       <p>Enter your Duke email:</p>
-        <input type="text" v-model="email" placeholder="coffee@duke.edu" required><br>
+        <input id="signup" type="text" v-model="email" placeholder="coffee@duke.edu" required><br>
       <p>Enter the password you want to use!</p>
-        <input type="password" v-model="password" placeholder="javabeans123" required><br>
+        <input id="signup" type="password" v-model="password" placeholder="javabeans123" required><br>
       <p>Headline</p>
-        <input type="text" v-model="title" placeholder="CS Student at Duke Unversity" required><br>
+        <input id="signup" type="text" v-model="title" placeholder="CS Student at Duke Unversity" required><br>
       <p>Give us a short biography about yourself and your interests!</p>
          <textarea rows="4" cols="50" placeholder = "Raised in a small town in Ireland, I...." required></textarea><br>
      <p>Graduation Year</p>
@@ -20,33 +20,30 @@
           <option value="2022">2022</option>
           <option value="2023">2023</option>
          </select>
+          <p> Location</p>
+        <input id="signup" type="text" v-model="location" placeholder="New York City" required><br>
     </div>
-    <div class = "right">
+    <div class = "left">
       <p>Full Name:</p>
-        <input type="text" v-model="name" placeholder="Kyle Ryan" required><br>
+        <input id="signup" type="text" v-model="name" placeholder="Kyle Ryan" required><br>
       <p>Age:</p>
-        <input type="number" v-model="age" placeholder="20" required><br>
+        <input id="signup" type="number" v-model="age" placeholder="20" required><br>
     <div class="radioFun">
       <p>Would you like to be a host or an engagee?</p>
-        <input type="radio" name="check" value="Host" required><label for="Host">Host</label><br>
-        <input type="radio" name="check" value="Engagee"><label for="Engagee">Engagee</label><br>
+        <input type="radio" v-model="check" value="Host" required><label for="Host">Host</label><br>
+        <input type="radio" v-model="check" value="Engagee"><label for="Engagee">Engagee</label><br>
     </div>
       <p>Input your title and information about your place of work or school</p>
       <p> Company/School</p>
-        <input type="text" v-model="company" placeholder="Goldman Sachs" required><br>
-      <p> Location</p>
-        <input type="text" v-model="location" placeholder="New York City" required><br>
+        <input id="signup" type="text" v-model="company" placeholder="Goldman Sachs" required><br>
       <p>Title</p>
-        <input type="text" v-model="jTitle" placeholder="Senior Analyst" required><br>
+        <input id="signup" type="text" v-model="jTitle" placeholder="Senior Analyst" required><br><br><br>
     </div>
-
-          <input type="submit" @click="signUp">
 </form>
-        <div class="under">
+      <br><br>
+    <div class="under">
 
-    <imageUpload />
-
-
+          <button @click="signUp">Sign-up</button>
           <span>or go back to <router-link to="/login">login</router-link>.</span>
 
     </div>
@@ -59,12 +56,10 @@
  <script>
   import db from '@/firebase/init'
   import firebase from 'firebase'
-  import imageUpload from './SignUp2.vue'
 
   export default {
 
     name: 'signUp',
-    components: { imageUpload },
     data() {
       return {
         email: '',
@@ -77,24 +72,23 @@
         title: '',
         location:'',
         company:'',
+        check: '',
         jTitle:'',
       }
     },
     methods: {
       signUp: function() {
-        switch(this.chooseone){
+        switch(this.check){
           case "Host":
             this.host = true;
-            //this.$router.replace('host');
             break;
           case "Engagee":
             this.host = false;
-            //this.$router.replace('home');
             break;
           default:
-          //  this.$router.replace('home');
-          this.host = false;
+            this.host = false;
         }
+        console.log(this.host)
         firebase.auth().createUserWithEmailAndPassword(this.email, this.password).then(
           (user) => {
             db.collection('Users').doc(firebase.auth().currentUser.uid).set({
@@ -110,8 +104,11 @@
               jTitle: this.jTitle,
             });
               //createUser(this.age, this.bio, this.gradyear, this.host, this.name, this.title, this.location, this.company, this.jTitle)
-              alert('done!')
-             this.$router.replace('sign-up-2');
+              if(this.host){
+                this.$router.replace('hostDashboard');
+              } else {
+                this.$router.replace('userDashboard');
+              }
           },
           (err) => {
             alert('Oops. ' + err.message)
@@ -128,11 +125,26 @@
 
  <style scoped>
 
+  h2{
+    text-emphasis: bold;
+  }
+  #signup{
+    width: 200px;
+    font-size: 13pt;
+  }
+  textarea{
+    font-size: 13pt;
+  }
   .left{
     float: left;
+    margin-left: 200px;
+  }
+  .under{
+    margin-top: 200px;
   }
   .right{
     float: right;
+    margin-right: 200px;
   }
   .sign-up {
     margin-top: 40px;
@@ -144,8 +156,9 @@
   }
   button {
     margin-top: 10px;
-    width: 10%;
+    width: 20%;
     cursor: pointer;
+    margin-left: 400px;
   }
   span {
     display: block;
