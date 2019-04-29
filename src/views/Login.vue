@@ -24,7 +24,13 @@
         firebase.auth().signInWithEmailAndPassword(this.email, this.password).then(
           (user) => {
             alert('Login successful!')
-            this.$router.replace('home')
+            //
+            // if db.collection(Users).where("uid", "==", firebase.auth().currentUser.uid).where('host', "==", true).get(){
+            //
+            // this.$router.replace('home')
+            // }
+            //
+            // this.$router.replace('home')
           },
           (err) => {
             alert('Oops. ' + err.message)

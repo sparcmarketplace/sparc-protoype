@@ -3,18 +3,35 @@
     <h1>Welcome!</h1>
     <h2>Upcoming Engagments:</h2>
     <div class="engage" v-for="engage in Engagements" :key="engage.title">
-      <h2>{{ engage.title }}</h2>
+      // <h2>{{ engage.title }}</h2>
+      //
+      // <h3>{{ engage.date }} , {{ engage.location }}</h3>
+      //
+      // <p>Description:</p>
+      // <h3>{{ engage.description }}</h3>
+      //
+      // <p>Tags:</p>
+      // <h3>{{ engage.tags }}</h3>
 
-      <h3>{{ engage.date }} , {{ engage.location }}</h3>
 
-      <p>Description:</p>
-      <h3>{{ engage.description }}</h3>
+          <b-card-group deck class="mb-3">
+            <b-card border-variant="light" header={{ engage.title }} class="text-left">
+              <b-card-text>
+                <p>{{ engage.description }}</p>
 
-      <p>Tags:</p>
-      <h3>{{ engage.tags }}</h3>
+              </b-card-text>
+              <p>Tags:{{ engage.tags }}</p>
 
-      <button @click="rsvp(engage.id)">Sign Up</button> <br>
-      <button @click="cancel(engage.id)">Cancel</button> <br>
+              <div v-for="person in User" :key="person.name">
+                <p> Hosted by {{ person.name }} </p>
+              </div>
+
+              <b-card-text>  <p>{{ engage.date }} , {{ engage.location }}<p>  </b-card-text>
+
+
+              <button @click="rsvp(engage.id)">Sign Up</button> <br>
+              <button @click="cancel(engage.id)">Cancel</button> <br>
+        </b-card-group>
 
     </div>
     <div class="done">
@@ -26,6 +43,23 @@
   </div>
 </template>
 
+// <div>
+//     <b-card-group deck class="mb-3">
+//       <b-card border-variant="light" header={{ engage.title }} class="text-left">
+//         <b-card-text>
+//           <p>{{ engage.description }}</p>
+//
+//         </b-card-text>
+//         <p>Tags:{{ engage.tags }}</p>
+//
+//         <div v-for="person in User" :key="person.name">
+//           <p> Hosted by {{ person.name }} </p>
+//         </div>
+//
+//     <b-card-text>  <p>{{ engage.date }} , {{ engage.location }}<p>  </b-card-text>
+//   </b-card-group>
+// </div>
+
 <script>
 import db from '@/firebase/init'
 import firebase from 'firebase'
@@ -34,7 +68,8 @@ export default {
   name: 'home',
   data(){
     return{
-      Engagements: []
+      Engagements: [],
+      Hosts: []
     }
   },
   methods: {
@@ -68,7 +103,16 @@ export default {
        engage.id = doc.id
        this.Engagements.push(engage)
      })
+   }),
+   db.collection('Users').where("uid", "==", engage.hid).get()
+   .then(info => {
+    info.forEach(doc => {
+       let person = doc.data()
+       person.id = doc.id
+       this.User.push(person)
+    })
    })
+
 }
 }
 </script>
