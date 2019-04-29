@@ -22,9 +22,7 @@
               </b-card-text>
               <p>Tags:{{ engage.tags }}</p>
 
-              <div v-for="person in User" :key="person.name">
-                <p> Hosted by {{ person.name }} </p>
-              </div>
+              // <p>Hosted By: {{engage.hname}}</p>
 
               <b-card-text>  <p>{{ engage.date }} , {{ engage.location }}<p>  </b-card-text>
 
@@ -68,8 +66,8 @@ export default {
   name: 'home',
   data(){
     return{
-      Engagements: [],
-      Hosts: []
+      Engagements: []
+      // Hosts: []
     }
   },
   methods: {
@@ -103,15 +101,15 @@ export default {
        engage.id = doc.id
        this.Engagements.push(engage)
      })
-   }),
-   db.collection('Users').where("uid", "==", engage.hid).get()
-   .then(info => {
-    info.forEach(doc => {
-       let person = doc.data()
-       person.id = doc.id
-       this.User.push(person)
-    })
    })
+   // db.collection('Users').where("uid", "==", engage.hid).get()
+   // .then(info => {
+   //  info.forEach(doc => {
+   //     let person = doc.data()
+   //     person.id = doc.id
+   //     this.User.push(person)
+   //  })
+   // })
 
 }
 }

@@ -97,6 +97,7 @@ export default {
         date: this.date, //str.concat(this.date, this.time), //oment.utc(this.date).local().format(),
         location: this.location,
         hid: firebase.auth().currentUser.uid,
+        // hname: firebase.auth().currentUser.name,
         participants: [],
         tags: this.tags.split(" ")
 
