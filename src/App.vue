@@ -14,13 +14,13 @@
   <div id = "logo">
   <img alt = "Sparc Logo" src = "./assets/sparclogo1.png">
 </div>
-  <router-view/>
+  <router-view />
 </div>
 
 </template>
 <style>
 img{
-  width: 40%;
+  width: 30%;
   text-align: center;
 }
 #app {
