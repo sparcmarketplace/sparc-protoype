@@ -71,14 +71,14 @@
           required
         /><br />
         <div class="radioFun">
-          <p>Would you like to be a host or an engagee?</p>
+          <p>Would you like to be a host or a guest?</p>
           <input type="radio" v-model="check" value="Host" required /><label
             for="Host"
             >Host</label
           ><br />
-          <input type="radio" v-model="check" value="Engagee" /><label
-            for="Engagee"
-            >Engagee</label
+          <input type="radio" v-model="check" value="Guest" /><label
+            for="Guest"
+            >Guest</label
           ><br />
         </div>
         <p>
@@ -141,7 +141,7 @@ export default {
         case "Host":
           this.host = true;
           break;
-        case "Engagee":
+        case "Guest":
           this.host = false;
           break;
         default:

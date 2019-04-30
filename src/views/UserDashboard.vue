@@ -9,13 +9,12 @@
     <h2>Upcoming Engagements:</h2>
     <div class="card" v-for="engage in Engagements" :key="engage.title">
       <div class="container">
-        <h2>{{ engage.title }}</h2>
-
-        <p>{{ engage.description }}</p>
-        <p>{{ engage.date }} {{ engage.location }}</p>
+        <h2 class="title">{{ engage.title }}</h2>
+        <p class="description">{{ engage.description }}</p>
+        <p class = "datecomp">{{ engage.date }} {{ engage.location }}</p>
         <hr />
 
-        <p>Tags: {{ engage.tags }}</p>
+        <p class="tags">Tags: {{ engage.tags }}</p>
         <button @click="rsvp(engage.id)">Sign Up</button>
       </div>
     </div>
@@ -56,6 +55,7 @@ export default {
             firebase.auth().currentUser.email
           )
         });
+         created();
     },
     cancel: function(x) {
       alert("Sign up cancelled!");
@@ -66,6 +66,7 @@ export default {
             firebase.auth().currentUser.email
           )
         });
+         created();
     }
   },
   created() {
@@ -128,6 +129,18 @@ h1 {
 /* Add some padding inside the card container */
 .container {
   padding: 2px 16px;
+}
+.title{
+  color:black;
+}
+.description{
+  color: grey;
+}
+.tags{
+  color: darkgray;
+}
+.datecomp{
+  color: darkgreen;
 }
 /*
 button {

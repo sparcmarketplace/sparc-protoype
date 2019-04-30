@@ -16,11 +16,11 @@
 
     <div class="card" v-for="engage in Engagements" :key="engage.title">
       <div class="container">
-        <h2>{{ engage.title }}</h2>
-
-        <p>{{ engage.description }}</p>
-        <p>{{ engage.date }} {{ engage.location }}</p>
+        <h2 class="title">{{ engage.title }}</h2>
+        <p class="description">{{ engage.description }}</p>
+        <p class = "datecomp">{{ engage.date }} {{ engage.location }}</p>
         <hr />
+
 
         <p>Participants:</p>
         <h5 v-for="participant in engage.participants" :key="participant">
@@ -29,8 +29,8 @@
         <!-- <h5 v-for="tag in engage.tags" :key="tag">
     {{ tag }}
   </h5> -->
+        <p class="tags">Tags: {{ engage.tags }}</p>
 
-        <p>Tags: {{ engage.tags }}</p>
 
         <button @click="cancel(engage.id)">Cancel Engagement</button> <br />
       </div>
@@ -102,6 +102,18 @@ export default {
 /* On mouse-over, add a deeper shadow */
 .card:hover {
   box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+}
+.title{
+  color:black;
+}
+.description{
+  color: grey;
+}
+.tags{
+  color: darkgray;
+}
+.datecomp{
+  color: darkgreen;
 }
 
 /* Add some padding inside the card container */

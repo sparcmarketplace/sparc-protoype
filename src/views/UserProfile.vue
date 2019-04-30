@@ -20,11 +20,11 @@
       <div class="centered">
         <div class="card" v-for="engage in Engagements" :key="engage.title">
           <div class="container">
-            <h2>{{ engage.title }}</h2>
-            <p>{{ engage.description }}</p>
-            <p>{{ engage.date }} {{ engage.location }}</p>
-            <hr />
-            <p>Tags: {{ engage.tags }}</p>
+             <h2 class="title">{{ engage.title }}</h2>
+        <p class="description">{{ engage.description }}</p>
+        <p class = "datecomp">{{ engage.date }} {{ engage.location }}</p>
+        <hr />
+        <p class="tags">Tags: {{ engage.tags }}</p>
             <button @click="cancel(engage.id)">Cancel</button> <br />
           </div>
         </div>
@@ -136,6 +136,19 @@ export default {
   margin-left: 750px; */
   width: 100%;
   margin-right: 0px;
+}
+
+.title{
+  color:black;
+}
+.description{
+  color: grey;
+}
+.tags{
+  color: darkgray;
+}
+.datecomp{
+  color: darkgreen;
 }
 
 /* On mouse-over, add a deeper shadow */

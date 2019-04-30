@@ -6,8 +6,7 @@
     <button @click="login">Login</button>
 
     <p>
-      If you don't have an account yet, you can
-      <router-link to="/sign-up">create one!</router-link>
+      Don't have an account? <router-link to="/sign-up">Create one!</router-link>
     </p>
   </div>
 </template>
