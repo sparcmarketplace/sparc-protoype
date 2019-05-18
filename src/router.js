@@ -11,6 +11,7 @@ import HostDashboard from "./views/HostDashboard.vue";
 import UserDashboard from "./views/UserDashboard.vue";
 import Welcome from "./views/Welcome.vue";
 import firebase from "firebase";
+import About from "./views/About.vue";
 
 Vue.use(Router);
 
@@ -54,6 +55,11 @@ const router = new Router({
       meta: {
         requiresAuth: true
       }
+    },
+    {
+      path: "/about",
+      name: "about",
+      component: About
     },
     {
       path: "/userDashboard",

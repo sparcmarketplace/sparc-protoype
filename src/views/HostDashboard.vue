@@ -1,17 +1,18 @@
 <template>
   <div class="host-create">
+      <ul id="nav">
+      <li class="img"><router-link to="/welcome"><img alt="Sparc Logo" src="@/assets/bigs.png"/></router-link></li>
+      <li><router-link to="/host">Create Engagement</router-link></li>
+      <li><router-link to="/UserProfile">Host Profile</router-link></li>
+      <li><router-link to="/UserDashboard">Engagements</router-link></li>
+      <li class="logout" @click="logout"><a>Logout</a></li>
+    </ul>
+
+
     <h1>Welcome to the Host Dashboard!</h1>
 
     <!-- <button @click="hostProfile">Host Profile</button> <br> -->
-    <button @click="logout">Logout</button>
-    <button @click="create">Create Engagement</button>
-    <span
-      ><router-link to="/userDashboard"
-        ><button>User Dashboard</button></router-link
-      ></span
-    >
-    <button @click="userProfile">Host Profile</button> <br>
-
+    
     <h2>Your Upcoming Engagements:</h2>
 
     <div class="card" v-for="engage in Engagements" :key="engage.title">
@@ -32,7 +33,7 @@
         <p class="tags">Tags: {{ engage.tags }}</p>
 
 
-        <button @click="cancel(engage.id)">Cancel Engagement</button> <br />
+        <button class="myButton" @click="cancel(engage.id)">Cancel Engagement</button> <br />
       </div>
     </div>
   </div>
@@ -91,6 +92,10 @@ export default {
 </script>
 
 <style scoped>
+
+#nav .logout{
+  margin-left: 700px;
+}
 .card {
   /* Add shadows to create the "card" effect */
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
@@ -121,10 +126,3 @@ export default {
   padding: 2px 16px;
 }
 </style>
-
-// function profileQuery(){ // const db = firebase.firestore(); // const userRef
-= db.collection('Users').doc(firebase.auth().currentUser.uid); // const
-engagementsRef = db.collection("Engagements"); // engagementsRef.where('hid',
-'==', firebase.auth().currentUser.uid).orderBy('date', 'desc').get() //
-.then(events => { // events.forEach(doc => { // data = doc.data() //
-document.write() // }) // });

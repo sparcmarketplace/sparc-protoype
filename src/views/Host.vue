@@ -1,5 +1,12 @@
 <template>
   <div class="host-create">
+       <ul id="nav">
+      <li class="img"><router-link to="/welcome"><img alt="Sparc Logo" src="@/assets/bigs.png"/></router-link></li>
+      <li><router-link to="/UserDashboard">Engagements</router-link></li>
+      <li><router-link to="/hostDashboard">Host Dashboard</router-link></li>
+      	    <li class="logout" @click="logout"><a>Logout</a></li>
+    </ul>
+
     <h3>Please input information to create an engagement!</h3>
     <p>Title:</p>
     <input
@@ -9,7 +16,9 @@
     /><br />
     <p>Date and Time:</p>
     <input type="datetime-local" v-model="date" /><br />
-    <p>Location:</p>
+    <p>How long will the engagement last? (in hours)</p>
+    <input type="number" placeholder="1"/><br />
+      <p>Location:</p>
     <input
       type="text"
       v-model="location"
@@ -30,8 +39,7 @@
       placeholder="consulting Bain New York"
     /><br />
 
-    <button @click="create">Create Engagement</button> <br/>
-    <button @click="logout">Logout</button>
+    <button class="myButton" @click="create">Create Engagement</button> <br/>
   </div>
 </template>
 
@@ -132,6 +140,15 @@ export default {
 </script>
 
 <style scoped>
+#nav .logout{
+  margin-left: 850px;
+}
+input, textarea{
+  border-radius: 10px;
+}
+.myButton{
+  width: 20%;
+}
 .sign-up-2 {
   margin-top: 40px;
 }

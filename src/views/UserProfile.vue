@@ -1,10 +1,19 @@
 <template>
   <div class="home">
+
+    <div class="top">
+    <ul id="nav">
+      <li class="img"><router-link to="/welcome"><img alt="Sparc Logo" src="@/assets/bigs.png"/></router-link></li>
+      <li><router-link to="/UserDashboard">Engagements</router-link></li>
+      <li><router-link to="/hostDashboard">Host Dashboard</router-link></li>
+      <li class="logout" @click="logout"><a>Logout</a></li>
+    </ul>
+    </div>
+
+
     <div class="split left" v-for="person in User" :key="person.name">
       <div class="centered">
-        <button @click="logout">Logout</button>
-        <button @click="UserDashboard">User Dashboard</button> <br />
-        <span><router-link to="/hostDashboard"><button>Host Dashboard</button></router-link></span><br>
+       
         <h1>{{ person.name }}</h1>
         <h3>{{ person.title }}</h3>
         <p>{{ person.bio }}</p>
@@ -16,7 +25,7 @@
     </div>
 
     <div class="split right">
-      <h2 class="rsvp">Your Upcoming RSVPs:</h2>
+      <h2 class="rsvp">Your Upcoming Engagements:</h2>
       <div class="centered">
         <div class="card" v-for="engage in Engagements" :key="engage.title">
           <div class="container">
@@ -25,7 +34,7 @@
         <p class = "datecomp">{{ engage.date }} {{ engage.location }}</p>
         <hr />
         <p class="tags">Tags: {{ engage.tags }}</p>
-            <button @click="cancel(engage.id)">Cancel</button> <br />
+            <button class="myButton" @click="cancel(engage.id)">Cancel</button> <br />
           </div>
         </div>
       </div>
@@ -121,12 +130,13 @@ export default {
   }
 };
 </script>
+
 <style scoped>
-.rsvp {
+
+#nav .logout{
+  float: right;
+  margin-left: 850px;
 }
-/* .card,.right{
-  width: 50%
-} */
 
 .card {
   /* Add shadows to create the "card" effect */
@@ -136,6 +146,7 @@ export default {
   margin-left: 750px; */
   width: 100%;
   margin-right: 0px;
+  margin-top: 15px;
 }
 
 .title{
@@ -158,7 +169,7 @@ export default {
 
 /* Add some padding inside the card container */
 .container {
-  padding: 50px 16px;
+  padding: 8px 16px;
 }
 .split {
   height: 80%;
@@ -171,14 +182,16 @@ export default {
 }
 .left {
   left: 0;
+  margin-top: 10%;
 }
 .right {
   right: 0;
+  margin-top: 10%; 
 }
 .centered {
   position: absolute;
   top: 50%;
-  left: 50%;
+  left: 37%;
   transform: translate(-25%, -25%);
   text-align: center;
 }
@@ -195,11 +208,11 @@ button {
 button:hover {
   color: red;
 }
-span {
+/* span {
   display: block;
   margin-top: 20px;
   font-size: 10px;
-}
+} */
 h1 {
   color: lightseagreen;
 }

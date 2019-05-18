@@ -1,7 +1,13 @@
 <template>
   <div class="sign-up">
+     <ul id="nav">
+    	<li><router-link to="/about">About</router-link></li>
+	    <li class="login"><router-link to="/login">Login</router-link></li>
+    </ul>
+     <div class="logo"> 
+      <router-link to='/welcome'><img alt="Sparc Logo" src="@/assets/sparclogo1.png" /></router-link>
+    </div>
     <form>
-      <h2>Sign Up for SPARC!</h2>
       <div class="right">
         <p>Enter your Duke email:</p>
         <input
@@ -102,10 +108,9 @@
         /><br /><br /><br />
       </div>
     </form>
-    <br /><br />
+    <br /><br/>
     <div class="under">
-      <button @click="signUp">Sign-up</button>
-      <span>or go back to <router-link to="/login">login</router-link>.</span>
+      <button class="myButton2" @click="signUp">Sign-up</button>
     </div>
   </div>
 </template>
@@ -187,6 +192,13 @@ export default {
 h2 {
   text-emphasis: bold;
 }
+input, textarea{
+  border-radius: 10px;
+}
+.under{
+  padding-top: 10px;
+  align-content: center;
+}
 #signup {
   width: 200px;
   font-size: 13pt;
@@ -213,6 +225,16 @@ input {
   width: 20%;
   padding: 15px;
 }
+#nav .login{
+  margin-left: 87%;
+}
+.logo{
+   width: 50%;
+   margin-left: auto;
+   margin-right: auto;
+   text-align: center;
+
+ }
 button {
   margin-top: 10px;
   width: 20%;

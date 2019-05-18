@@ -1,18 +1,20 @@
-<template lang="html">
+<template>
   <div id="welcome">
-    <button class="myButton" name="enter" @click="start">Begin</button>
+    <ul id="nav">
+    	<li><router-link to="/about">About</router-link></li>
+	    <li class="login"><router-link to="/login">Login</router-link></li>
+    </ul>
 
-    <h1>About SPARC</h1>
-    <p>
-      SPARC is a platform built on the premise that people have skills and
-      expertise <br />
-      that are underutilized. With SPARC, people can share their knowledge,
-      passion <br />
-      and skills with the world while creating a community of people excited
-      about the continued <br />
-      transfer of conversation, partnership and knowledge. A peer to peer
-      network.
-    </p>
+    <div class="logo"> 
+      <img alt="Sparc Logo" src="@/assets/sparclogo1.png" />
+    </div>
+
+    <input id="search" type="text" placeholder="I want to learn web development..."/> <br/> <br/>
+
+    <button class="myButton" name="world" @click="notdev"> Sparc the World </button>
+    <button class="myButton2" name="login" @click="start"> Create </button>
+
+
   </div>
 </template>
 
@@ -22,33 +24,42 @@ export default {
   methods: {
     start: function() {
       this.$router.replace("Login");
+    },
+    notdev: function(){
+      alert('not developed yet!')
     }
   }
 };
 </script>
 
 <style scoped>
- /*  myButton code from https://www.bestcssbuttongenerator.com/ */
-.myButton {
-  background-color: #44c767;
-  -moz-border-radius: 28px;
-  -webkit-border-radius: 28px;
-  border-radius: 28px;
-  border: 1px solid #18ab29;
-  display: inline-block;
-  cursor: pointer;
-  color: #ffffff;
-  font-family: Arial;
-  font-size: 17px;
-  padding: 16px 31px;
-  text-decoration: none;
-  text-shadow: 0px 1px 0px #2f6627;
+ /*  myButton code from https://www.css3buttongenerator.com/*/
+ #search{
+   width: 40%;
+   font-size: 16pt;
+   padding: 9px 12px;
+   border-radius: 30px;
+ }
+ .logo{
+   margin-top: 13%;
+   width: 85%;
+   display: block;
+   margin-left: auto;
+   margin-right: auto;
+   text-align: center;
+
+ }
+/* On mouse-over, add a deeper shadow */
+input:hover {
+  box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
 }
-.myButton:hover {
-  background-color: #5cbf2a;
-}
-.myButton:active {
-  position: relative;
-  top: 1px;
-}
+ #welcome{
+   display: inline-block;
+ }
+
+ #nav .login{
+   color: #1cce3d;
+   float: right;
+   margin-left: 87%;
+ }
 </style>
