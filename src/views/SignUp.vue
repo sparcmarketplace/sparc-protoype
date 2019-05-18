@@ -65,7 +65,7 @@
           id="signup"
           type="text"
           v-model="name"
-          placeholder="Kyle Ryan"
+          placeholder="Jane Smith"
           required
         /><br />
         <p>Age:</p>
