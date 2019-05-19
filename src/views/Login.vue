@@ -55,9 +55,6 @@ export default {
 </script>
 
 <style scoped>
-.login {
-  margin-top: 40px;
-}
 .logo{
    width: 50%;
    margin-left: auto;
@@ -75,6 +72,13 @@ button {
   width: 10%;
   cursor: pointer;
 }
+input{
+  border-radius: 10px;
+  border: 1px solid lightgrey;
+}
+input:hover{
+   box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.1)
+}
 #nav .signup{
   float: right;
   margin-left: 87%;
@@ -84,8 +88,13 @@ p {
   margin-top: 40px;
   font-size: 13px;
 }
+.myButton2{
+  margin-left: 0px;
+  padding: 0px;
+}
 p a {
   text-decoration: underline;
   cursor: pointer;
 }
+
 </style>

@@ -9,11 +9,12 @@
     </div>
     <form>
       <div class="left">
-         <p>First Name:</p>
+         <p>Full Name:</p>
         <input
           id="signup"
           type="text"
-          v-model="fname"
+          v-model="name"
+          placeholder="Jane Smith"
           required
         /><br />
          <p>Enter your email:</p>
@@ -21,15 +22,17 @@
           id="signup"
           type="text"
           v-model="email"
+          placeholder="coffee@duke.edu"
           required
         /><br />
       </div>
       <div class="right">
-        <p>Last Name:</p>
+        <p>Age:</p>
         <input
           id="signup"
-          type="text"
-          v-model="lname"
+          type="number"
+          v-model="age"
+          placeholder="20"
           required
         /><br />
          <p>Create a password:</p>
@@ -37,23 +40,19 @@
           id="signup"
           type="password"
           v-model="password"
+          placeholder="javabeans123"
           required
         /><br />
         </div>
 
       <div class="rest">
-      <p>Age:</p>
-        <input
-          id="signup"
-          type="number"
-          v-model="age"
-          required
-        /><br />
+      
         <p>Headline:</p>
         <input
           id="headline"
           type="text"
           v-model="title"
+          placeholder="CS Student at Duke Unversity"
           required
         /><br />
         <p>Give us a short biography about yourself and your interests!</p>
@@ -61,6 +60,7 @@
           rows="4"
           cols="50"
           v-model="bio"
+          placeholder="Raised in a small town in Ireland, I...."
           required
         ></textarea
         ><br />
@@ -72,18 +72,18 @@
           <option value="2022">2022</option>
           <option value="2023">2023</option>
         </select>
-        <br /> <br />
 
         <div class="radioFun">
-         <label class="container">Host
-          <input type="radio" checked="checked" name="radio">
-            <span class="checkmark"></span>
-                    </label>   or
-            <label class="container">Guest
-              <input type="radio" name="radio">
-            <span class="checkmark"></span>
-                </label> 
-        </div> <br />
+          <p>Would you like to be a host or a guest?</p>
+          <input type="radio" v-model="check" value="Host " required /><label
+            for="Host"
+            >Host  </label
+          ><br />
+          <input type="radio" v-model="check" value="Guest" /><label
+            for="Guest"
+            >Guest</label
+          ><br />
+        </div>
         <p>
           <b>Input your title and information about your place of work or school</b>
         </p>
@@ -93,6 +93,7 @@
           id="signup"
           type="text"
           v-model="company"
+          placeholder="Goldman Sachs"
           required
         /><br />
         </div>
@@ -102,6 +103,7 @@
           id="signup"
           type="text"
           v-model="location"
+          placeholder="New York City"
           required
         /><br />
         </div>
@@ -111,6 +113,7 @@
           id="signup"
           type="text"
           v-model="jTitle"
+          placeholder="Senior Analyst"
           required
         /><br/>
         </div>
@@ -139,8 +142,7 @@ export default {
       bio: "",
       gradYear: "",
       host: "",
-      fname: "",
-      lname: "",
+      name: "",
       title: "",
       location: "",
       company: "",
@@ -173,7 +175,7 @@ export default {
                 bio: this.bio,
                 gradYear: this.gradYear,
                 host: this.host,
-                name: this.fname + " " + this.lname,
+                name: this.name,
                 title: this.title,
                 uid: firebase.auth().currentUser.uid,
                 location: this.location,
@@ -233,74 +235,13 @@ textarea {
   float: right;
   margin-right: 30%;
 }
+.sign-up {
+  margin-top: 40px;
+}
 input {
   margin: 10px 0;
   width: 20%;
   padding: 15px;
-  border: 1px solid darkgrey;
-}
-
-/*  radiobox css from: https://www.w3schools.com/howto/howto_css_custom_checkbox.asp  */
-/* The container */
-.container {
-  position: relative;
-  margin-bottom: 12px;
-  cursor: pointer;
-}
-
-/* Hide the browser's default radio button */
-.container input {
-  position: absolute;
-  opacity: 0;
-  cursor: pointer;
-}
-
-/* Create a custom radio button */
-.checkmark {
-  position: absolute;
-  top: 0;
-  left: 0;
-  height: 25px;
-  width: 25px;
-  background-color: #eee;
-  border-radius: 50%;
-  margin-top: 30px;
-  margin-bottom: 30px;
-}
-
-/* On mouse-over, add a grey background color */
-.container:hover input ~ .checkmark {
-  background-color: #ccc;
-}
-
-/* When the radio button is checked, add a blue background */
-.container input:checked ~ .checkmark {
-  background-color: #0d60f0;
-}
-
-/* Create the indicator (the dot/circle - hidden when not checked) */
-.checkmark:after {
-  content: "";
-  position: absolute;
-  display: none;
-}
-
-/* Show the indicator (dot/circle) when checked */
-.container input:checked ~ .checkmark:after {
-  display: block;
-}
-
-/* Style the indicator (dot/circle) */
-.container .checkmark:after {
- 	top: 9px;
-	left: 9px;
-	width: 8px;
-	height: 8px;
-	border-radius: 50%;
-	background: white;
-}
-textarea{
-    border: 1px solid darkgrey;
 }
 #nav .login{
   margin-left: 87%;

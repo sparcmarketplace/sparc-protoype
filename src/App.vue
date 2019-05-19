@@ -1,6 +1,8 @@
 <template>
   <div id="app">
+    <head>
     <title>SPARC</title> 
+    </head>
     
     <!-- <div id="nav">
     <router-link to="/">Home</router-link> |

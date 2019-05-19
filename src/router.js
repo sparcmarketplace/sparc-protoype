@@ -28,12 +28,18 @@ const router = new Router({
     {
       path: "/welcome",
       name: "Welcome",
-      component: Welcome
+      component: Welcome,
+      meta: {
+        title: 'SPARC'
+      }
     },
     {
       path: "/login",
       name: "Login",
-      component: Login
+      component: Login,
+      meta: {
+        title: 'SPARC'
+      }
     },
     {
       path: "/sign-up",

@@ -9,7 +9,7 @@
       <img alt="Sparc Logo" src="@/assets/sparclogo1.png" />
     </div>
 
-    <input id="search" type="text" placeholder="I want to learn web development..."/> <br/> <br/>
+    <input id="search" type="text" /> <br/> <br/>
 
     <button class="myButton" name="world" @click="notdev"> Sparc the World </button>
     <button class="myButton2" name="login" @click="start"> Create </button>
@@ -35,14 +35,19 @@ export default {
 <style scoped>
  /*  myButton code from https://www.css3buttongenerator.com/*/
  #search{
-   width: 40%;
-   font-size: 16pt;
-   padding: 9px 12px;
+   width: 45%;
+   font-size: 13pt;
+   padding: 15px 20px;
    border-radius: 30px;
+   border: 100px;
+ }
+ input{
+     box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.25);
+
  }
  .logo{
-   margin-top: 13%;
-   width: 85%;
+   margin-top: 9%;
+   width: 75%;
    display: block;
    margin-left: auto;
    margin-right: auto;
@@ -51,7 +56,7 @@ export default {
  }
 /* On mouse-over, add a deeper shadow */
 input:hover {
-  box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+  box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.5);
 }
  #welcome{
    display: inline-block;
@@ -59,7 +64,6 @@ input:hover {
 
  #nav .login{
    color: #1cce3d;
-   float: right;
    margin-left: 87%;
  }
 </style>
