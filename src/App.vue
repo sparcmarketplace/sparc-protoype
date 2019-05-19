@@ -114,6 +114,9 @@ h5 {
 input:focus, textarea:focus{
     outline:none !important;
 }
+textarea{
+  padding: 15px 15px;
+}
 
 
 </style>
