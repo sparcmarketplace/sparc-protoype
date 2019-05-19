@@ -3,7 +3,7 @@
 
          <ul id="nav">
         <!-- <li class="img"><router-link to="/welcome"><img alt="Sparc Logo" src="@/assets/bigs.png"/></router-link></li> -->
-        <li><router-link to="/welcome">Home</router-link></li>
+        <li class="img"><router-link to="/welcome"><img alt="Sparc Logo" src="@/assets/bigs.png"/></router-link></li>
         <li class="about"><router-link to="/about">About</router-link></li>
 	    <li class="login"><router-link to="/login">Login</router-link></li>
     </ul>
@@ -38,9 +38,6 @@ a{
   width: 100px;
 }
 
-#nav .login{
-  margin-left: 84.05%;
-}
 .found{
   width: 16%;
   border-radius: 50%;

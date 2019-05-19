@@ -25,7 +25,7 @@
     </div>
 
     <div class="split right">
-      <h2 class="rsvp">Your Upcoming Engagements:</h2>
+      <h2 class="rsvp">Engagements you're attending:</h2>
       <div class="centered">
         <div class="card" v-for="engage in Engagements" :key="engage.title">
           <div class="container">
@@ -133,10 +133,6 @@ export default {
 
 <style scoped>
 
-#nav .logout{
-  float: right;
-  margin-left: 850px;
-}
 
 .card {
   /* Add shadows to create the "card" effect */

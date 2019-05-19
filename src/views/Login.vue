@@ -2,7 +2,7 @@
   <div class="login">
 
      <ul id="nav">
-      <li class="home"><router-link to="/welcome">Home</router-link></li>
+      <li class="img"><router-link to="/welcome"><img alt="Sparc Logo" src="@/assets/bigs.png"/></router-link></li>
     	<li><router-link to="/about">About</router-link></li>
       <li class="contact"><router-link to="/contact">Contact</router-link></li>
 
@@ -82,11 +82,7 @@ input{
 input:hover{
    box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.1)
 }
-#nav .signup{
-  float: right;
-  margin-left: 75%;
 
-}
 p {
   margin-top: 40px;
   font-size: 13px;

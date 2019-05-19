@@ -119,4 +119,10 @@ textarea{
 }
 
 
+#nav .logout, #nav .signup, #nav .login{
+  margin-right: 1%;
+  margin-left: auto;
+}
+
+
 </style>

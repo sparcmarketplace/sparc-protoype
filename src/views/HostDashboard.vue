@@ -3,7 +3,7 @@
       <ul id="nav">
       <li class="img"><router-link to="/welcome"><img alt="Sparc Logo" src="@/assets/bigs.png"/></router-link></li>
       <li><router-link to="/host">Create Engagement</router-link></li>
-      <li><router-link to="/UserProfile">Host Profile</router-link></li>
+      <li><router-link to="/UserProfile">Profile</router-link></li>
       <li><router-link to="/UserDashboard">Engagements</router-link></li>
       <li class="logout" @click="logout"><a>Logout</a></li>
     </ul>
@@ -13,7 +13,7 @@
 
     <!-- <button @click="hostProfile">Host Profile</button> <br> -->
     
-    <h2>Your Upcoming Engagements:</h2>
+    <h2> Engagements you're hosting:</h2>
 
     <div class="card" v-for="engage in Engagements" :key="engage.title">
       <div class="container">
@@ -94,9 +94,6 @@ export default {
 
 <style scoped>
 
-#nav .logout{
-  margin-left: 700px;
-}
 .card {
   /* Add shadows to create the "card" effect */
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);

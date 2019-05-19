@@ -2,7 +2,7 @@
 <div id="about">
      <ul id="nav">
         <!-- <li class="img"><router-link to="/welcome"><img alt="Sparc Logo" src="@/assets/bigs.png"/></router-link></li> -->
-      <li><router-link to="/welcome">Home</router-link></li>
+      <li class="img"><router-link to="/welcome"><img alt="Sparc Logo" src="@/assets/bigs.png"/></router-link></li>
       <li class="contact"><router-link to="/contact">Contact</router-link></li>
 	    <li class="login"><router-link to="/login">Login</router-link></li>
     </ul>
@@ -19,9 +19,6 @@
 </template>
 <style scoped>
 
-#nav .login{
-  margin-left: 83%;
-}
 
 .info{
   font-size: 20pt;

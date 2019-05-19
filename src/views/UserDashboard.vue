@@ -2,7 +2,7 @@
   <div class="open">
      <ul id="nav">
       <li class="img"><router-link to="/welcome"><img alt="Sparc Logo" src="@/assets/bigs.png"/></router-link></li>
-      <li><router-link to="/UserProfile">User Profile</router-link></li>
+      <li><router-link to="/UserProfile">Profile</router-link></li>
       <li><router-link to="/hostDashboard">Host Dashboard</router-link></li>
       <li><input class="search" type=text placeholder="Search..."></li>
       <li class="logout" @click="logout"><a>Logout</a></li>
@@ -103,8 +103,7 @@ export default {
   width: 250px;
   border-radius: 10px;
   padding: 10px 10px;
-  margin-left: 50px;
-  margin-right: 550px;
+  margin-left: 3%;
 }
 input{
   margin: 10px 0;
