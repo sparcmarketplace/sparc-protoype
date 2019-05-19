@@ -111,7 +111,7 @@ h5 {
 	position:relative;
 	top:1px;
 }
-input:focus {
+input:focus, textarea:focus{
     outline:none !important;
 }
 
