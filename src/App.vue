@@ -111,5 +111,9 @@ h5 {
 	position:relative;
 	top:1px;
 }
+input:focus {
+    outline:none !important;
+}
+
 
 </style>
