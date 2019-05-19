@@ -17,7 +17,7 @@
     <p>Date and Time:</p>
     <input type="datetime-local" v-model="date" /><br />
     <p>How long will the engagement last? (in hours)</p>
-    <input type="number" placeholder="1"/><br />
+    <input type="number" placeholder="1" v-model="length"/><br />
       <p>Location:</p>
     <input
       type="text"
@@ -59,6 +59,7 @@ export default {
       location: "",
       tags: "",
       dates: [],
+      length: "",
       days: [],
       times: [],
       month: ""
@@ -118,7 +119,7 @@ export default {
           break;
       }
       this.date = this.month.concat(
-        " " + this.days[2] + ", " + this.days[0] + " " + this.dates[1]
+        " " + this.days[2] + ", " + this.days[0] + " at " + this.dates[1]
       );
 
       db.collection("Engagements").add({
@@ -126,6 +127,7 @@ export default {
         title: this.title,
         date: this.date, //str.concat(this.date, this.time), //oment.utc(this.date).local().format(),
         location: this.location,
+        length: this.length,
         hid: firebase.auth().currentUser.uid,
         // hname: firebase.auth().currentUser.name,
         participants: [],
@@ -145,6 +147,17 @@ export default {
 }
 input, textarea{
   border-radius: 10px;
+  border: 1px solid darkgrey;
+
+}
+input {
+  margin: 10px 0;
+  width: 20%;
+  padding: 15px;
+  border: 1px solid darkgrey;
+}
+input:hover, textarea:hover {
+  box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.3);
 }
 .myButton{
   width: 20%;

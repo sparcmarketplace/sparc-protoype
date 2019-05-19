@@ -15,7 +15,8 @@
       <div class="container">
         <h2 class="title">{{ engage.title }}</h2>
         <p class="description">{{ engage.description }}</p>
-        <p class = "datecomp">{{ engage.date }} {{ engage.location }}</p>
+         <p class = "datecomp" v-if="engage.length !== '' "> {{ engage.date }} for {{ engage.length }} hour(s) at {{ engage.location }}</p>
+        <p class = "datecomp" v-else> {{ engage.date }} at {{ engage.location }}</p>
         <hr />
 
         <p class="tags">Tags: {{ engage.tags }}</p>

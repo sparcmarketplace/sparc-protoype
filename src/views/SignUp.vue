@@ -234,8 +234,8 @@ textarea {
   margin-right: 30%;
 }
 input {
-  margin: 10px 0;
   width: 20%;
+  margin-left: 40%;
   padding: 15px;
   border: 1px solid darkgrey;
 }
@@ -319,7 +319,7 @@ button {
   margin-top: 10px;
   width: 20%;
   cursor: pointer;
-  margin-left: 400px;
+  margin-left: 40%;
 }
 span {
   display: block;

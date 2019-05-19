@@ -20,9 +20,7 @@
 
 <div class="left">
 <img class="found" alt="founder" src="@/assets/laurel.jpeg"/> 
-<p class="inf"> Founder: <b>Laurel Djoukeng</b> <br />
- Duke University | The Fuqua School of Business <br />
- Candidate for MBA | Class of 2020 </p>
+<p class="inf"> Founder: <b>Laurel Djoukeng</b></p>
 
 </div>
 
@@ -41,7 +39,7 @@ a{
   margin-left: 95%;
 }
 .found{
-  width: 25%;
+  width: 50%;
   border-radius: 50%;
 }
 .info{
