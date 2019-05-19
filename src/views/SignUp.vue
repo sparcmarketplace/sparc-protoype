@@ -83,7 +83,7 @@
               <input type="radio" name="radio">
             <span class="checkmark"></span>
                 </label> 
-        </div> <br />
+        </div> <br /> <br />
         <p>
           <b>Input your title and information about your place of work or school</b>
         </p>
@@ -198,10 +198,11 @@ export default {
 
 <style scoped>
 .rest{
-  padding-top: 20%;
+  padding-top: 15%;
 }
 .rest2{
-  padding-top: 10%;
+  padding-top: 8%;
+  padding-bottom: 2%;
 }
 #headline{
   width: 30%;
@@ -235,7 +236,6 @@ textarea {
 }
 input {
   width: 20%;
-  margin-left: 40%;
   padding: 15px;
   border: 1px solid darkgrey;
 }
