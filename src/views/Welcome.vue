@@ -2,6 +2,7 @@
   <div id="welcome">
     <ul id="nav">
     	<li><router-link to="/about">About</router-link></li>
+      <li class="contact"><router-link to="/contact">Contact</router-link></li>
 	    <li class="login"><router-link to="/login">Login</router-link></li>
     </ul>
 
@@ -58,12 +59,10 @@ export default {
 input:hover {
   box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.5);
 }
- #welcome{
-   display: inline-block;
- }
+
 
  #nav .login{
    color: #1cce3d;
-   margin-left: 87%;
+   margin-left: 83%;
  }
 </style>

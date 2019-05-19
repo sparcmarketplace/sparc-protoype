@@ -1,7 +1,9 @@
 <template>
   <div class="sign-up">
      <ul id="nav">
+      <li class="home"><router-link to="/welcome">Home</router-link></li>
     	<li><router-link to="/about">About</router-link></li>
+      <li class="contact"><router-link to="/contact">Contact</router-link></li>
 	    <li class="login"><router-link to="/login">Login</router-link></li>
     </ul>
      <div class="logo"> 
@@ -303,7 +305,7 @@ textarea{
     border: 1px solid darkgrey;
 }
 #nav .login{
-  margin-left: 87%;
+  margin-left: 75%;
 }
 input:hover, textarea:hover {
   box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.3);

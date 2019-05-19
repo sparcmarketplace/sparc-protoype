@@ -2,7 +2,10 @@
   <div class="login">
 
      <ul id="nav">
+      <li class="home"><router-link to="/welcome">Home</router-link></li>
     	<li><router-link to="/about">About</router-link></li>
+      <li class="contact"><router-link to="/contact">Contact</router-link></li>
+
 	    <li class="signup"><router-link to="/sign-up">Sign Up</router-link></li>
     </ul>
       <div class="logo"> 
@@ -81,7 +84,7 @@ input:hover{
 }
 #nav .signup{
   float: right;
-  margin-left: 87%;
+  margin-left: 75%;
 
 }
 p {

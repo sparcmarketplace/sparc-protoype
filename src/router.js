@@ -12,6 +12,7 @@ import UserDashboard from "./views/UserDashboard.vue";
 import Welcome from "./views/Welcome.vue";
 import firebase from "firebase";
 import About from "./views/About.vue";
+import Contact from "./views/Contact.vue";
 
 Vue.use(Router);
 
@@ -66,6 +67,11 @@ const router = new Router({
       path: "/about",
       name: "about",
       component: About
+    },
+    {
+      path: "/contact",
+      name: "contact",
+      component: Contact
     },
     {
       path: "/userDashboard",
